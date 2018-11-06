@@ -1,9 +1,16 @@
 .card {
-  width: 20rem;
+  width: 17rem;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 950px) {
+  .card {
+    width: 16rem;
+  }
+}
+
+@media (max-width: 600px) {
   .card {
     width: 100%;
+    min-width: 100%
   }
 }

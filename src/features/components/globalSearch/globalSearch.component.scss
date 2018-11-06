@@ -1,17 +1,34 @@
-@import '../../../../assets/scss/variables.scss';
+@import "../../../../assets/scss/variables.scss";
 
-.search_panel{
-    display: flex;
-    justify-content: space-evenly;
+.search_panel {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 7px;
+  margin-top: 5px;
+  .LocationSearchInput,
+  .DatePick {
     padding: 7px;
-    margin-top: 5px;
-    .LocationSearchInput,
-    .DatePick{
-        padding: 7px;
+  }
+  div {
+    input {
+      width: 321px;
     }
+  }
 
-    .button_search{
-        background: $bg-secondary!important;
-        color: #fff!important;
+  .button_search {
+    background: $bg-secondary !important;
+    color: #fff !important;
+  }
+}
+
+@media (max-width: 950px) {
+  .search_panel {
+    flex-direction: column;
+    div {
+      width: 100%;
+      input {
+        width: 92%;
+      }
     }
+  }
 }

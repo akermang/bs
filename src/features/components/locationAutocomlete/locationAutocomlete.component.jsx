@@ -65,7 +65,7 @@ class LocationSearchInput extends React.Component {
                 label="Location"
                 InputProps={{
                   endAdornment: (
-                    <InputAdornment>
+                    <InputAdornment style={{width: "8%"}}>
                       <Icon
                         className={styles.cancelIcon}
                         onClick={this.clearLocation}

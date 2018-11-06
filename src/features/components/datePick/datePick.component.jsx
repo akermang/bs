@@ -103,7 +103,7 @@ class DatePickComponent extends React.Component {
             value={this.state.selectedDates}
             InputProps={{
               endAdornment: (
-                <InputAdornment position="end">
+                <InputAdornment style={{width: "8%"}} position="end">
                   <Icon
                     className={styles.cancelIcon}
                     onClick={this.clearLocation}

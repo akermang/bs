@@ -4,3 +4,11 @@
     margin: 10px 5px;
   }
 }
+@media(max-width: 600px){
+  .boardsContainer {
+    .boardCard {
+      display: block;
+      margin: 2px auto;
+    }
+  }
+}

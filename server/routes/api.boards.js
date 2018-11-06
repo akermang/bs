@@ -166,6 +166,25 @@ router.get("/", (req, res) => {
     });
 });
 
+//post boards by selection
+router.post("/bySelection", (req, res) => {
+  console.log(req.body)
+  Board.findAll()
+    .then(boardsArray => {
+      let index = 0;
+      boardsArray.forEach((element, i) => {
+        index>9? index = 0: null;
+        let imgArray =[BoardImages.images[index],BoardImages.images[index+1],BoardImages.images[index+2]]
+        element.dataValues["images"] = imgArray;
+        index++
+      });
+      return boardsArray;
+    })
+    .then(boardsArray => {
+      res.status(200).send(boardsArray);
+      console.log("SSSSEEEENNNND 200");
+    });
+});
 // Get board by Id
 router.get("/:id", (req, res) => {
   const { id } = req.params;
