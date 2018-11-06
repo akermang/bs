@@ -1,0 +1,48 @@
+[
+  {
+    "brand": "Ultrawave",
+    "type": "allround",
+    "model": "Fast forward",
+    "length": "5’10",
+    "width": "19 3/8",
+    "thickness": "2 3/16",
+    "volume": "28L",
+    "finSetUp": "FCS 1 - 3 fin plugs",
+    "tail:": "Round",
+    "construction": "PU",
+    "location": "Herzlia Israel",
+    "userId": "",
+    "images:":  "['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3m7wn_-BjaX7yvho0Ggw8SyZWkEZM91SLqGB4xBpe_FEatTVhQQ','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcvNP2-F1q_B-BY7rO35j7AevrVDIYuoRbpaTokMdJ0GXg2cVD','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOGS2O7Y73ivdWJ5KjiMaIDu_4pWulYXS2Sty_QXxgoNpByrgMnA']"
+  },
+  {
+    "brand": "Ultrawave",
+    "type": "Performens",
+    "model": "Pro",
+    "length": "5’10",
+    "width": "18 3/8",
+    "thickness": "2 3/16",
+    "volume": "26L",
+    "finSetUp": "FCS 2 - 3 fin plugs",
+    "tail:": "Round",
+    "construction": "EPS",
+    "location": "Tel Aviv Israel",
+    "userId": "",
+    "images:":  "['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIlnoLttdDOjv9SyNmIxM450ji7q1m_3Tki7YqdMwNo5IYU2jnWQ','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhhUKLd_CkTdE-oJMaK3wt09r_md6caBOzbs_M92jI3sIgXuEL','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMifmGSN85hcY8wwfIixNZFAVqBYmN7Sdt1i4rdGoE3QUjDjKP']"
+  },
+  {
+    "brand": "Rusty",
+    "type": "Performens",
+    "model": "Bird",
+    "length": "5’10",
+    "width": "18 3/8",
+    "thickness": "2 3/16",
+    "volume": "28L",
+    "finSetUp": "FCS 2 - 3 fin plugs",
+    "tail:": "Round",
+    "construction": "EPS",
+    "location": "Tel Aviv Israel",
+    "userId": "",
+    "images:":  "['https://www.haydenshapes.com/wp-content/uploads/2017/08/HSSTUDiO_Home.jpg','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMDWs4i_CMbON7eCMEGHnFpB8zaKNmZcDYeyTp8t3nlnlQUxWgww','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMifmGSN85hcY8wwfIixNZFAVqBYmN7Sdt1i4rdGoE3QUjDjKP']"
+  }  
+   
+]

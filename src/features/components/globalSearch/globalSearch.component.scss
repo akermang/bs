@@ -1,0 +1,17 @@
+@import '../../../../assets/scss/variables.scss';
+
+.search_panel{
+    display: flex;
+    justify-content: space-evenly;
+    padding: 7px;
+    margin-top: 5px;
+    .LocationSearchInput,
+    .DatePick{
+        padding: 7px;
+    }
+
+    .button_search{
+        background: $bg-secondary!important;
+        color: #fff!important;
+    }
+}

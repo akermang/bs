@@ -1,0 +1,39 @@
+@import "../../../../assets/scss/variables.scss";
+
+.homePage {
+  .selectUtilityContainer {
+    width: 50%;
+    margin: auto;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    > div {
+      width: 60%;
+    }
+  }
+
+  .title {
+    padding: 7px;
+  }
+
+  .globusImgWrap {
+    width: 65%;
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+
+    img {
+      height: 45vh;
+    }
+  }
+}
+@media (max-width: 800px) {
+  .homePage {
+    .globusImgWrap {
+      img {
+        height: 30vh;
+      }
+    }
+  }
+}
