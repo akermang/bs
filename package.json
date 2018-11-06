@@ -35,6 +35,7 @@
     "pg": "^7.5.0",
     "pg-hstore": "^2.3.2",
     "prop-types": "15.6.0",
+    "query-string": "^6.2.0",
     "rc-slider": "8.6.1",
     "react": "16.3.0",
     "react-daterange-picker": "^2.0.1",

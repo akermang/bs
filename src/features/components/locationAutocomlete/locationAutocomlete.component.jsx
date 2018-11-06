@@ -16,7 +16,7 @@ class LocationSearchInput extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      address: "",
+      address: props.location || "",
       isCleared: false
     };
   }

@@ -12,20 +12,23 @@ import "react-dates/lib/css/_datepicker.css";
 import DatePickComponent from "../datePick/datePick.component.jsx";
 import LocationSearchInput from "../../components/locationAutocomlete/locationAutocomlete.component.jsx";
 import Card from "@material-ui/core/Card";
+import { withRouter } from "react-router-dom";
 
-const goSearch = () => {
-  window.location = "#/results?"+location + "%20"+ dates;
+
+const goSearch = (history) => {
+  history.push({
+    pathname: '/results',
+    search: `?location=${location}&dates=${dates}`
+  })
 }
-let  dates = {}
+let  dates = ""
 const setDate = (str) => {
   dates = str
-  console.log(dates)
 }
 
-let location ={};
+let location = "";
 const setLocation = (str)=>{
   location = str;
-  console.log(location)
 }
 
 const GlobalsearchComponent = props => {
@@ -33,14 +36,14 @@ const GlobalsearchComponent = props => {
     <div className={styles.container}>
       {props.example}
       <Card className={styles.search_panel}>
-        <LocationSearchInput setLocation={setLocation}/>
-        <DatePickComponent setDates={setDate} />
+        <LocationSearchInput location={location} setLocation={setLocation}/>
+        <DatePickComponent  dates={dates} setDates={setDate} />
         <Button
           variant="fab"
           color="primary"
           aria-label="search"
           className={styles.button_search}
-          onClick={goSearch}
+          onClick={() => goSearch(props.history)}
         >
           <SearchIcon />
         </Button>
@@ -53,4 +56,4 @@ const GlobalsearchComponent = props => {
 //   example: PropTypes.string.isRequired
 // };
 
-export default GlobalsearchComponent;
+export default withRouter(GlobalsearchComponent);

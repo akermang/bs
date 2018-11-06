@@ -7,6 +7,7 @@ import { FetchBoardsAction } from "../../../common/state/board/board.actions";
 import Typography from "@material-ui/core/Typography";
 import { translate } from "react-i18next";
 import GlobalsearchComponent from "../../components/globalSearch/globalSearch.component.jsx";
+import queryString from 'query-string'
 
 class SearchresultsPage extends Component {
   constructor(props) {
@@ -14,23 +15,16 @@ class SearchresultsPage extends Component {
     this.state = {};
   }
   componentDidMount() {
+    const values = queryString.parse(this.props.location.search)
+    console.log("params values:",values)
     this.props.fetchBoards();
-    this.formatSelectionData()
   }
-
-  formatSelectionData = ()=>{
-    let data = "Aachen,%20Germany%20Nov%2014th%202018%20-%20Nov%2016th%202018%20%20%202%20days".split("%20");
-    let str = data.join(" ")
-    console.log("selection data: ",str)
-  }
-
-  
 
   render() {
     const { boards } = this.props;
     return (
       <div className={styles.container}>
-        {/* <GlobalsearchComponent /> */}
+        <GlobalsearchComponent />
         <Typography variant="display1" component="h3">
           {this.props.t("SEARCH_RESULT_PAGE")}
         </Typography>

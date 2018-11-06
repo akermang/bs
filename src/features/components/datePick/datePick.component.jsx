@@ -55,12 +55,15 @@ class DatePickComponent extends React.Component {
       isOpen: false,
       isDateSelected: false,
       totalDays: "",
-      selectedDates: "",
+      selectedDates: props.dates,
       value: moment.range(
         today.clone(),
         today.clone() //.subtract(7, "days")
       )
     };
+  }
+  componentDidMount(){
+    console.log("this.props.dates:", this.props.dates)
   }
 
   onSelect = (value, states) => {
