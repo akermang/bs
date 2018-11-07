@@ -8,6 +8,8 @@ import Typography from "@material-ui/core/Typography";
 import { translate } from "react-i18next";
 import GlobalsearchComponent from "../../components/globalSearch/globalSearch.component.jsx";
 import queryString from 'query-string'
+import { withRouter } from "react-router-dom";
+
 
 class SearchresultsPage extends Component {
   constructor(props) {
@@ -17,7 +19,17 @@ class SearchresultsPage extends Component {
   componentDidMount() {
     const values = queryString.parse(this.props.location.search)
     console.log("params values:",values)
-    this.props.fetchBoardsBySelections();
+    let selection = "gal selection"
+    this.props.fetchBoardsBySelections(selection);
+  }
+
+  onBoardClick = (id)=> this.goToBoardPage(id)
+
+  goToBoardPage = (id) => {
+    this.props.history.push({
+      pathname: '/board',
+      search: `?boardId=${id}&dates=${'gal dates'}`
+    })
   }
 
   render() {
@@ -34,8 +46,10 @@ class SearchresultsPage extends Component {
 
         <div className={styles.boardsContainer}>
           {boards.map(board => (
-            <div key={board.id} className={styles.boardCard}>
-              <Cards board={board} />
+            <div key={board.id} id={board.id} className={styles.boardCard} onClick={()=>this.onBoardClick(board.id)}>
+              <Cards
+               board={board}
+                />
             </div>
           ))}
         </div>
@@ -61,6 +75,6 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  translate()(SearchresultsPage)
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter
+  (translate()(SearchresultsPage))
 );

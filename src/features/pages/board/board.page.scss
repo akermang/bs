@@ -1,0 +1,13 @@
+.boardContainer {
+  max-width: 100%;
+  margin: 0 auto;
+  display: flex;
+
+  .boardCard {
+    width: 40%;
+  }
+
+  .boardCarousel {
+    width: 60%;
+  }
+}

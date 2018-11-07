@@ -18,18 +18,7 @@ class TestPage extends Component {
     return (
       <div className={styles.container}>
         TEST PAGE
-        {/* <PlacesComponent/> */}
-        {/* <DateRangePicker
-          startDate={moment()} // momentPropTypes.momentObj or null,
-          startDateId="your_unique_start_date_id" // PropTypes.string.isRequired,
-          endDate={moment()} // momentPropTypes.momentObj or null,
-          endDateId="your_unique_end_date_id" // PropTypes.string.isRequired,
-          onDatesChange={({ startDate, endDate }) =>
-            this.setState({ startDate, endDate })
-          }
-          focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
-          onFocusChange={focusedInput => this.setState({ focusedInput })}
-        /> */}
+        
         <SectionCarousel />
       </div>
     );
