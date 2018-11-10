@@ -10,10 +10,10 @@ import DefaultLayout from "./default/default-layout.page.jsx";
 import i18n from "../../i18n";
 import HomePage from "../features/pages/Home/home.page.jsx";
 import AboutPage from "../features/pages/About/about.page.jsx";
-import TestPage from "../features/pages/test/test.page.jsx";
 import SearchresultsPage from "../features/pages/searchResults/SearchResults.page.jsx";
 import { ROUTES } from "../common/constants";
 import CreateBoardPage from "../features/pages/create-board/create-board.page.jsx";
+import BoardPage from "../features/pages/board/board.page.jsx";
 
 
 
@@ -28,9 +28,9 @@ const Root = ({ store }) => ({
                 <Switch>
                   <DefaultLayout path={ROUTES.home} component={HomePage} />
                   <DefaultLayout path={ROUTES.about} component={AboutPage} />
-                  <DefaultLayout path={ROUTES.test} component={TestPage} />
                   <DefaultLayout path={ROUTES.results} component={SearchresultsPage} />
                   <DefaultLayout path={ROUTES.createBoard} component={CreateBoardPage} />
+                  <DefaultLayout path={ROUTES.board} component={BoardPage} />
                 </Switch>
               </App>
             </Router>

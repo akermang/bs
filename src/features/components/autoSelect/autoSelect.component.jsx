@@ -12,45 +12,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import CancelIcon from '@material-ui/icons/Cancel';
 import { emphasize } from '@material-ui/core/styles/colorManipulator';
 
-const suggestions = [
-  { label: 'Afghanistan' },
-  { label: 'Aland Islands' },
-  { label: 'Albania' },
-  { label: 'Algeria' },
-  { label: 'American Samoa' },
-  { label: 'Andorra' },
-  { label: 'Angola' },
-  { label: 'Anguilla' },
-  { label: 'Antarctica' },
-  { label: 'Antigua and Barbuda' },
-  { label: 'Argentina' },
-  { label: 'Armenia' },
-  { label: 'Aruba' },
-  { label: 'Australia' },
-  { label: 'Austria' },
-  { label: 'Azerbaijan' },
-  { label: 'Bahamas' },
-  { label: 'Bahrain' },
-  { label: 'Bangladesh' },
-  { label: 'Barbados' },
-  { label: 'Belarus' },
-  { label: 'Belgium' },
-  { label: 'Belize' },
-  { label: 'Benin' },
-  { label: 'Bermuda' },
-  { label: 'Bhutan' },
-  { label: 'Bolivia, Plurinational State of' },
-  { label: 'Bonaire, Sint Eustatius and Saba' },
-  { label: 'Bosnia and Herzegovina' },
-  { label: 'Botswana' },
-  { label: 'Bouvet Island' },
-  { label: 'Brazil' },
-  { label: 'British Indian Ocean Territory' },
-  { label: 'Brunei Darussalam' },
-].map(suggestion => ({
-  value: suggestion.label,
-  label: suggestion.label,
-}));
+
 
 const styles = theme => ({
   root: {
@@ -237,14 +199,15 @@ class IntegrationReactSelect extends React.Component {
           <Select
             classes={classes}
             styles={selectStyles}
-            options={suggestions}
+            options={this.props.suggestions}
             components={components}
             value={this.state.single}
             onChange={this.handleChange('single')}
-            placeholder="Search a country (start with a)"
+            placeholder={this.props.placeholder}
+            autoFocus={true}
           />
           <div className={classes.divider} />
-          <Select
+          {/* <Select
             classes={classes}
             styles={selectStyles}
             textFieldProps={{
@@ -259,7 +222,7 @@ class IntegrationReactSelect extends React.Component {
             onChange={this.handleChange('multi')}
             placeholder="Select multiple countries"
             isMulti
-          />
+          /> */}
         </NoSsr>
       </div>
     );

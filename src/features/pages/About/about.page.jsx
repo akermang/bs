@@ -17,7 +17,7 @@ const AboutPage = () => (
     “Members were asking for more surfboards, more locations, the ability to
     book multiple surfboards for longer than 5 days, and for the flexibility to
     only pay for the days they used the boards.
-    <IntegrationReactSelect />
+    {/* <IntegrationReactSelect /> */}
     <img className={styles.aboutImg} src={image1} alt="" />
     <img className={styles.aboutImg} src={image2} alt="" />
     <p>

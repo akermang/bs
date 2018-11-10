@@ -22,11 +22,16 @@ export default {
   getBoardsBySelection: {
     url: '/api/boards/bySelection',
     method: 'POST',
-    contentType: 'application/json'
+    contentType: 'application/json',
+  },
+  getBoardsOptions: {
+    url: '/api/boards/options',
+    method: 'GET',
+    contentType: 'application/json',
   },
   getBoardById: {
     url: id => `/api/boards/${id}`,
-    method: 'POST',
+    method: 'GET',
     contentType: 'application/json'
   }
 };

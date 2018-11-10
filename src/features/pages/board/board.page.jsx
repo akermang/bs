@@ -11,12 +11,12 @@ import Cards from "../../components/card.Class/cardClass.component.jsx";
 import SectionCarousel from "../../components/carousel/carousel.component.jsx";
 
 class BoardPage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      id: ""
-    };
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     id: ""
+  //   };
+  // }
 
   componentDidMount() {
     const values = queryString.parse(this.props.location.search);
@@ -25,9 +25,12 @@ class BoardPage extends Component {
   }
 
   render() {
-    const { boards } = this.props;
-    const id = this.state.id;
-    console.log("boards:", boards, "id:", id);
+    const { boards, selectedBoard } = this.props;
+    // const id = this.state.id;
+    // console.log("boards:", boards, "id:", id,  "selectedBoard:", selectedBoard);
+
+    console.log(selectedBoard);
+
     return (
       <div className={styles.container}>
         <Typography variant="display1" component="h3">
@@ -37,12 +40,10 @@ class BoardPage extends Component {
           This is the Surfboard for your vacation...
         </Typography>
         <div className={styles.boardContainer}>
-          <div className={styles.boardCard.wraper}>
-            {boards[id] && <Cards board={boards[id]} />}
-          </div>
           <div className={styles.boardCarousel}>
             <SectionCarousel />
           </div>
+          {selectedBoard && <Cards board={selectedBoard} />}
         </div>
         <GlobalsearchComponent className={styles.GlobalsearchComponent} />
       </div>
@@ -56,7 +57,8 @@ BoardPage.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    boards: state.board.boards
+    boards: state.board.boards,
+    selectedBoard: state.board.selectedBoard
   };
 }
 

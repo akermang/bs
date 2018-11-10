@@ -1,38 +1,49 @@
-@import '../../../../assets/scss/variables.scss';
+@import "../../../../assets/scss/variables.scss";
 
-.dialog{
-    .title{
-        display: flex;
-        text-transform: capitalize;
-    }
+.mui-paper-container {
+  height: 100% !important;
+}
 
-    .content{
-        color: $text-color-dimmed;
-    }
+.dialog {
+  .mui-paper-container {
+    height: 100% !important;
+  }
 
-    .closeIcon{
-        position: absolute;
-        right: 0;
-        top: 0;
-        margin: 20px;    
+  > div {
+    height: 100% !important;
+}
+  .title {
+    display: flex;
+    text-transform: capitalize;
+  }
+
+  .content {
+    color: $text-color-dimmed;
+  }
+
+  .closeIcon {
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin: 20px;
+  }
+  .closeIconRtl {
+    @extend .closeIcon;
+    left: 0;
+    right: initial;
+  }
+  &.fullPage {
+    padding-top: 0 !important;
+    top: -40px !important;
+    .title ~ div {
+      max-height: none !important;
+      height: calc(100% - 75px);
     }
-    .closeIconRtl{
-        @extend .closeIcon;
-        left: 0;
-        right: initial;
+    > div {
+      height: 100%;
+      > div > div {
+        height: calc(100% - 50px);
+      }
     }
-    &.fullPage{
-        padding-top: 0!important;
-        top: -40px!important;
-        .title ~ div{
-            max-height: none!important;
-            height: calc(100% - 75px);
-        }
-        > div{
-            height: 100%;
-            > div > div{
-                height: calc(100% - 50px);
-            }
-        }
-    }
+  }
 }

@@ -35,16 +35,22 @@ const DrawerComponent = ({ closeDrawer, open, currentRoute, t }) => (
       />
 
       <DrawerLink
-        to={ROUTES.test}
+        to={ROUTES.createBoard}
         iconSrc={ImgSrc}
-        label={t("TEST_PAGE")}
+        label={t("CREATE_BOARD_PAGE")}
         closeDrawer={closeDrawer}
       />
 
       <DrawerLink
         to={ROUTES.results}
         iconSrc={ImgSrc}
-        label={t("RESULTS_PAGE")}
+        label={t("SEARCH_RESULT_PAGE")}
+        closeDrawer={closeDrawer}
+      />,
+      <DrawerLink
+        to={ROUTES.board}
+        iconSrc={ImgSrc}
+        label={t("BOARD_PAGE")}
         closeDrawer={closeDrawer}
       />
     </div>

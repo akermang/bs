@@ -34,6 +34,7 @@ class SearchresultsPage extends Component {
 
   render() {
     const { boards } = this.props;
+    console.log(boards)
     return (
       <div className={styles.container}>
         <Typography variant="display1" component="h3">
@@ -45,7 +46,7 @@ class SearchresultsPage extends Component {
         <GlobalsearchComponent />
 
         <div className={styles.boardsContainer}>
-          {boards.map(board => (
+          {boards && boards.map(board => (
             <div key={board.id} id={board.id} className={styles.boardCard} onClick={()=>this.onBoardClick(board.id)}>
               <Cards
                board={board}
@@ -71,7 +72,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    fetchBoardsBySelections: () => dispatch(new FetchBoardsBySelectionAction())
+    fetchBoardsBySelections: (userSelection) => dispatch(new FetchBoardsBySelectionAction(userSelection))
   };
 }
 

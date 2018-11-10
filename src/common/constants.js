@@ -8,7 +8,9 @@ export const ROUTES = {
   about: '/about',
   test: '/test',
   results: '/results',
-  createBoard: '/create-board'
+  createBoard: '/create-board',
+  board: '/board'
+
 };
 
 export const mobileMaxWidth = 1023;

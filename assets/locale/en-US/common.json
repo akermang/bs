@@ -1,5 +1,9 @@
 {
   "HOME_PAGE": "home page",
   "ABOUT_PAGE": "about page",
-  "SEARCH_RESULT_PAGE": "Search result page"
+  "SEARCH_RESULT_PAGE": "Search result page",
+  "BOARD_PAGE": "Board page",
+  "CREATE_BOARD_PAGE": "Create board page",
+  "SKIP": "Skip",
+  "OK": "Ok"
 }

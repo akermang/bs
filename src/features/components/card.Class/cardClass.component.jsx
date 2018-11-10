@@ -20,10 +20,11 @@ const style = {
 class Cards extends React.Component {
   render() {
     const { classes, board } = this.props;
+    console.log("Card Board:", board)
     return (
       <div className={styles.card}>
         <Card>
-          <img
+       { board.images && <img
             style={{ height: "180px", width: "100%", display: "block" }}
             className={classes.imgCardTop}
             src={
@@ -31,8 +32,9 @@ class Cards extends React.Component {
               "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIlnoLttdDOjv9SyNmIxM450ji7q1m_3Tki7YqdMwNo5IYU2jnWQ"
             }
             alt="Card-img-cap"
-          />
+          />}
           <CardBody>
+            <p>ID: {board.id}</p>
             <h4 className={classes.cardTitle} style={{ color: "#a73a9d"}}>{board.brand || "Al Meric"}</h4>
             <p>TYPE: {board.type}</p>
             <p>MODEL: {board.model}</p>
