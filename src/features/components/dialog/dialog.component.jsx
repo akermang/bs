@@ -7,8 +7,9 @@ import Button from "@material-ui/core/Button";
 import { translate } from "react-i18next";
 
 const DialogComponent = ({ component, title, closeDialog, open, isRtl }) => (
+  
   <Dialog
-    // style={isRtl ? { direction: "rtl" } : null}
+    style={isRtl ? { direction: "rtl" } : null}
     style={{ alignItems: 0 }}
     open={open}
     fullWidth={true}
@@ -20,7 +21,7 @@ const DialogComponent = ({ component, title, closeDialog, open, isRtl }) => (
 
     <DialogContent className={styles.content}>{component}</DialogContent>
     <DialogActions>
-      <Button onClick={this.handleCancel} color="primary">
+      <Button onClick={()=>closeDialog()} color="primary">
         {/* {t("SKIP")} */}Skip
       </Button>
       <Button onClick={this.handleOk} color="primary">

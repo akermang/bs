@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import Button from "@material-ui/core/Button";
+import AddIcon from "@material-ui/icons/Add";
+import Icon from "@material-ui/core/Icon";
+import Card from "@material-ui/core/Card";
 import styles from "./create-board.page.scss";
 import {
   FetchBoardsAction,
@@ -9,7 +13,10 @@ import {
 import Typography from "@material-ui/core/Typography";
 import { translate } from "react-i18next";
 import IntegrationReactSelect from "../../components/autoSelect/autoSelect.component.jsx";
-import { OpenDialogAction } from "../../../common/state/dialog/dialog.actions";
+import {
+  OpenDialogAction,
+  CloseDialogAction
+} from "../../../common/state/dialog/dialog.actions";
 
 class CreateBoardPage extends Component {
   constructor(props) {
@@ -22,8 +29,8 @@ class CreateBoardPage extends Component {
         value: suggestion.label,
         label: suggestion.label
       }));
-      this.props.dialog(
-        "What Is your Board Brand?",
+      this.props.openDialog(
+        "What Is your Board Brand ?",
         <IntegrationReactSelect
           placeholder={"Brand"}
           suggestions={suggestions}
@@ -43,6 +50,82 @@ class CreateBoardPage extends Component {
         <Typography variant="subheading" component="p" color="textSecondary">
           create..save..update..share.. your ShareBoard page detailes
         </Typography>
+
+       
+
+        <Card>
+          <div>
+            <Button
+              variant="flat"
+              color="primary"
+              aria-label="Edit"
+              className={styles.button_edit}
+              onClick={() =>
+                this.props.openDialog(
+                  "What Is your Board Type ?",
+                  <IntegrationReactSelect
+                    placeholder={"Type"}
+                    suggestions={this.props.options.type.map(suggestion => ({
+                      value: suggestion,
+                      label: suggestion
+                    }))}
+                  />
+                )
+              }
+            >
+              <Icon>edit_icon</Icon>
+            </Button>
+            <span style={{margin: 8+"px"}}>type</span>
+          </div>
+
+          <div>
+            <Button
+              variant="flat"
+              color="secondary"
+              aria-label="Edit"
+              className={styles.button_edit}
+              onClick={() =>
+                this.props.openDialog(
+                  "What Is your Board Model ?",
+                  <IntegrationReactSelect
+                    placeholder={"Model"}
+                    suggestions={this.props.options.model.map(suggestion => ({
+                      value: suggestion,
+                      label: suggestion
+                    }))}
+                  />
+                )
+              }
+            >
+              <Icon>edit_icon</Icon>
+            </Button>
+            <span style={{margin: 8+"px"}}>model</span>
+          </div>
+
+          <div>
+            <Button
+              variant="flat"
+              color="accent"
+              aria-label="Edit"
+              className={styles.button_edit}
+              onClick={() =>
+                this.props.openDialog(
+                  "What Is your Board Fins-Setup ?",
+                  <IntegrationReactSelect
+                    placeholder={"Fins - SetUp"}
+                    suggestions={this.props.options.finSetUp.map(suggestion => ({
+                      value: suggestion,
+                      label: suggestion
+                    }))}
+                  />
+                )
+              }
+            >
+              <Icon>edit_icon</Icon>
+            </Button>
+            <span style={{margin: 8+"px"}}>Fins - SetUp</span>
+          </div>
+        </Card>
       </div>
     );
   }
@@ -67,8 +150,9 @@ function mapDispatchToProps(dispatch) {
   return {
     fetchBoards: () => dispatch(new FetchBoardsAction()),
     fetchBoardsOptions: () => dispatch(new FetchBoardsOptionsAction()),
-    dialog: (title, component) =>
-      dispatch(new OpenDialogAction(title, component))
+    openDialog: (title, component) =>
+      dispatch(new OpenDialogAction(title, component)),
+    closeDialog: () => dispatch(new CloseDialogAction())
   };
 }
 
