@@ -148,7 +148,6 @@ router.post("/bySelection", (req, res) => {
 
 //get boards options
 router.get("/options", (req, res) => {
-  console.log("ddddddddddddddddddddd",BoardsOptions)
   res.status(200).send(BoardsOptions);
 });
 
