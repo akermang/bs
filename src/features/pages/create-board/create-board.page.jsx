@@ -52,6 +52,31 @@ class CreateBoardPage extends Component {
         </Typography>
 
         <Card>
+        <div
+            onClick={() =>
+              this.props.openDialog(
+                "What Is your Board Brand ?",
+                <IntegrationReactSelect
+                  placeholder={"Brand Options.."}
+                  suggestions={this.props.options.brand.map(suggestion => ({
+                    value: suggestion.label,
+                    label: suggestion.label
+                  }))}
+                />
+              )
+            }
+          >
+            <Button
+              variant="flat"
+              color="primary"
+              aria-label="Edit"
+              className={styles.button_edit}
+            >
+              <Icon>edit_icon</Icon>
+            </Button>
+            <span style={{ margin: 8 + "px" }}>Brand</span>
+          </div>
+
           <div
             onClick={() =>
               this.props.openDialog(
