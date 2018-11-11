@@ -45,7 +45,7 @@ class CreateBoardPage extends Component {
     return (
       <div className={styles.container + " createBoardPage"}>
         <Typography variant="display1" component="h3">
-          BoardShare - {this.props.t("CREATE_BOARD_PAGE")}
+          {this.props.t("CREATE_BOARD_PAGE")}
         </Typography>
         <Typography variant="subheading" component="p" color="textSecondary">
           create..save..update..share.. your ShareBoard page detailes
@@ -125,6 +125,56 @@ class CreateBoardPage extends Component {
               <Icon>edit_icon</Icon>
             </Button>
             <span style={{ margin: 8 + "px" }}>Fins - SetUp</span>
+          </div>
+
+           <div
+            onClick={() =>
+              this.props.openDialog(
+                "Board Tail ?",
+                <IntegrationReactSelect
+                  placeholder={"Tail style"}
+                  suggestions={this.props.options.tail.map(suggestion => ({
+                    value: suggestion,
+                    label: suggestion
+                  }))}
+                />
+              )
+            }
+          >
+            <Button
+              variant="flat"
+              color="accent"
+              aria-label="Edit"
+              className={styles.button_edit}
+            >
+              <Icon>edit_icon</Icon>
+            </Button>
+            <span style={{ margin: 8 + "px" }}>Tail</span>
+          </div>
+
+          <div
+            onClick={() =>
+              this.props.openDialog(
+                "Board Construction ?",
+                <IntegrationReactSelect
+                  placeholder={"Tail style"}
+                  suggestions={this.props.options.construction.map(suggestion => ({
+                    value: suggestion,
+                    label: suggestion
+                  }))}
+                />
+              )
+            }
+          >
+            <Button
+              variant="flat"
+              color="accent"
+              aria-label="Edit"
+              className={styles.button_edit}
+            >
+              <Icon>edit_icon</Icon>
+            </Button>
+            <span style={{ margin: 8 + "px" }}>Construction</span>
           </div>
         </Card>
       </div>

@@ -39,12 +39,12 @@
     { "label": "Brunei Darussalam" } 
   ],
   "model": ["flayer", "gravy", "fast forward"],
-  "type": ["pro", "funboard", "all round", "long board"],
+  "type": ["beginers", "short board", "pro", "funboard", "all round", "long board", "gun", "hebrid", "semi-pro", "fish", "small wave", "soft-short", "soft-midume", "soft-long"],
   "measures": {
     "length": ["5'9", "5'10", "5'11", "6'0", "6'1"],
     "widht": ["17 1/2", "18 2/3", "18/8", "19 1/5", "20 1/2"],
     "thickness": ["2 3/16", "2 4/16", "2 7/8", "2 1/2"],
-    "volume": ["24L", "25L", "26L", "27L"]
+    "volume": ["22L", "23L", "24L", "25L", "26L", "27L", "28L", "29L", "30L", "31L", "32L", "33L", "34L", "35L", "36", "37L"]
   },
   "finSetUp": [
     "FCS",
@@ -54,7 +54,9 @@
     "Thruster/Tri Fin",
     "Quad Fin",
     "5-Fin",
-    "2+1 Fin long board"
+    "2+1 Fin long board",
+    "2 fins",
+    "costume fins set up"
   ],
   "tail": ["Square","Pin","Round","Swallow","Rounded Square","Rounded Pin","Bat Tail","Wing","Fish","Diamond"],
   "construction": ["Future Flex","Hydroflex","Carbon Wrap","Ultra Stringerless Carbon","SUPERflex","EPS","PU","other costruction"]
