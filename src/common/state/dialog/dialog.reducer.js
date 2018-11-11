@@ -9,7 +9,8 @@ function dialogReducer (state = dialogState, action) {
         isRender: true,
         title: action.payload.title,
         component: action.payload.component,
-        type: action.payload.type
+        type: action.payload.type,
+        handler: action.payload.handler
       };
 
     case CLOSE_DIALOG:

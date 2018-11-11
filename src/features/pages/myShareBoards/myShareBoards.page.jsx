@@ -8,6 +8,7 @@ import styles from "./myShareBoards.page.scss";
 import { FetchBoardsByUserIdAction } from "../../../common/state/board/board.actions";
 import Cards from "../../components/card.Class/cardClass.component.jsx";
 import Card from "../../components/Card/Card.jsx";
+import ListcompComponent from "../../components/list/list.component.jsx"
 
 class MyshareboardsPage extends Component {
   constructor(props) {
@@ -37,6 +38,7 @@ class MyshareboardsPage extends Component {
         <Typography variant="subheading" component="p" color="textSecondary">
           Add and Edit Your Surfboards
         </Typography>
+        <ListcompComponent/>
 
         <div className={styles.boardsContainer}>
           {userBoards &&

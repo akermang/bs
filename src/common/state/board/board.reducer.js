@@ -3,7 +3,9 @@ import {
   FETCH_BOARDS,
   FETCH_BOARDS_OPTIONS,
   FETCH_BOARDS_BY_SELECTION,
-  FETCH_BOARDS_BY_ID
+  FETCH_BOARDS_BY_ID,
+  FETCH_BOARDS_BY_USER_ID,
+  FETCH_NEW_BOARD
 } from "./board.actions";
 import { SUCCESS_SUFFIX } from "../../constants";
 
@@ -20,6 +22,13 @@ const BoardReducer = (state = initialState, action) => {
 
       case `${FETCH_BOARDS_BY_ID}${SUCCESS_SUFFIX}`:
       return { ...state, selectedBoard: action.payload };
+
+      case `${FETCH_BOARDS_BY_USER_ID}${SUCCESS_SUFFIX}`:
+      return { ...state, userBoards: action.payload };
+
+      case `${FETCH_NEW_BOARD}${SUCCESS_SUFFIX}`:
+      return { ...state, newBoard: action.payload };
+
 
     default:
       return state;

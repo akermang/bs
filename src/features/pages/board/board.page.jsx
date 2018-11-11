@@ -41,7 +41,7 @@ class BoardPage extends Component {
         </Typography>
         <div className={styles.boardContainer}>
           <div className={styles.boardCarousel}>
-            <SectionCarousel />
+            {selectedBoard && <SectionCarousel  images = {selectedBoard.images}/>}
           </div>
           {selectedBoard && <Cards board={selectedBoard} />}
         </div>

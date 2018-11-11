@@ -9,7 +9,8 @@ export const ROUTES = {
   test: '/test',
   results: '/results',
   createBoard: '/create-board',
-  board: '/board'
+  board: '/board',
+  myShareBoards: '/myShareBoards'
 
 };
 

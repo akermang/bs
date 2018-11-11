@@ -53,6 +53,12 @@ const DrawerComponent = ({ closeDrawer, open, currentRoute, t }) => (
         label={t("BOARD_PAGE")}
         closeDrawer={closeDrawer}
       />
+      <DrawerLink
+        to={ROUTES.myShareBoards}
+        iconSrc={ImgSrc}
+        label={t("MY_SHARE_BOARDS_PAGE")}
+        closeDrawer={closeDrawer}
+      />
     </div>
   </Drawer>
 );

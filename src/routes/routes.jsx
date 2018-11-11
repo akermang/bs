@@ -11,6 +11,7 @@ import i18n from "../../i18n";
 import HomePage from "../features/pages/Home/home.page.jsx";
 import AboutPage from "../features/pages/About/about.page.jsx";
 import SearchresultsPage from "../features/pages/searchResults/SearchResults.page.jsx";
+import MyShareBoardsPage from "../features/pages/myShareBoards/myShareBoards.page.jsx"
 import { ROUTES } from "../common/constants";
 import CreateBoardPage from "../features/pages/create-board/create-board.page.jsx";
 import BoardPage from "../features/pages/board/board.page.jsx";
@@ -31,6 +32,7 @@ const Root = ({ store }) => ({
                   <DefaultLayout path={ROUTES.results} component={SearchresultsPage} />
                   <DefaultLayout path={ROUTES.createBoard} component={CreateBoardPage} />
                   <DefaultLayout path={ROUTES.board} component={BoardPage} />
+                  <DefaultLayout path={ROUTES.myShareBoards} component={MyShareBoardsPage} />
                 </Switch>
               </App>
             </Router>

@@ -14,7 +14,9 @@ const initialState = {
     finSetUp: null,
     tail: null,
     construction: null
-  }
+  },
+  userBoards: null,
+  newBoard: null
 };
 
 export default initialState;

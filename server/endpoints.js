@@ -19,6 +19,11 @@ export default {
     method: 'GET',
     contentType: 'application/json'
   },
+  postNewBoard: {
+    url: '/api/boards',
+    method: 'POST',
+    contentType: 'application/json'
+  },
   getBoardsBySelection: {
     url: '/api/boards/bySelection',
     method: 'POST',
@@ -34,7 +39,7 @@ export default {
     method: 'GET',
     contentType: 'application/json'
   },
-  getBoardByUserId: {
+  getBoardsByUserId: {
     url: id => `/api/boards/byUserId/${id}`,
     method: 'GET',
     contentType: 'application/json'

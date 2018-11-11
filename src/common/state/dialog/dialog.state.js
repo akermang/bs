@@ -3,7 +3,8 @@ const dialogState = {
   title: '',
   additionalProps: {},
   type: '',
-  component: null
+  component: null,
+  handler: null
 };
 
 export default dialogState;

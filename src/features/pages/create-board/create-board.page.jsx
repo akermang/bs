@@ -5,9 +5,12 @@ import Button from "@material-ui/core/Button";
 import AddIcon from "@material-ui/icons/Add";
 import Icon from "@material-ui/core/Icon";
 import Card from "@material-ui/core/Card";
+import TextField from "@material-ui/core/TextField";
+import InputAdornment from "@material-ui/core/InputAdornment";
 import styles from "./create-board.page.scss";
 import {
   FetchBoardsAction,
+  FetchNewBoardAction,
   FetchBoardsOptionsAction
 } from "../../../common/state/board/board.actions";
 import Typography from "@material-ui/core/Typography";
@@ -30,14 +33,23 @@ class CreateBoardPage extends Component {
         label: suggestion.label
       }));
       this.props.openDialog(
-        "What Is your Board Brand ?",
-        <IntegrationReactSelect
-          placeholder={"Brand"}
-          suggestions={suggestions}
-        />
+        "give your board a name",
+        <div className={styles.nameInput}>
+          <TextField
+            autoFocus
+            style={{ width: 100 + "%" }}
+            variant="outlined"
+            label="Board name"
+            value={this.state.selectedDates}
+          />
+        </div>,
+        this.createBoard
       );
     });
   }
+  createBoard = board => {
+    console.log(board);
+  };
 
   render() {
     const { boards, options } = this.props;
@@ -52,7 +64,7 @@ class CreateBoardPage extends Component {
         </Typography>
 
         <Card>
-        <div
+          <div
             onClick={() =>
               this.props.openDialog(
                 "What Is your Board Brand ?",
@@ -152,7 +164,7 @@ class CreateBoardPage extends Component {
             <span style={{ margin: 8 + "px" }}>Fins - SetUp</span>
           </div>
 
-           <div
+          <div
             onClick={() =>
               this.props.openDialog(
                 "Board Tail ?",
@@ -180,13 +192,42 @@ class CreateBoardPage extends Component {
           <div
             onClick={() =>
               this.props.openDialog(
+                "Board MEASURES",
+                <IntegrationReactSelect
+                  placeholder={"MEASURES"}
+                  suggestions={this.props.options.measures.length.map(
+                    suggestion => ({
+                      value: suggestion,
+                      label: suggestion
+                    })
+                  )}
+                />
+              )
+            }
+          >
+            <Button
+              variant="flat"
+              color="default"
+              aria-label="Edit"
+              className={styles.button_edit}
+            >
+              <Icon>edit_icon</Icon>
+            </Button>
+            <span style={{ margin: 8 + "px" }}>Measures</span>
+          </div>
+
+          <div
+            onClick={() =>
+              this.props.openDialog(
                 "Board Construction ?",
                 <IntegrationReactSelect
-                  placeholder={"Tail style"}
-                  suggestions={this.props.options.construction.map(suggestion => ({
-                    value: suggestion,
-                    label: suggestion
-                  }))}
+                  placeholder={"Construction PU/EPS.."}
+                  suggestions={this.props.options.construction.map(
+                    suggestion => ({
+                      value: suggestion,
+                      label: suggestion
+                    })
+                  )}
                 />
               )
             }
@@ -200,6 +241,44 @@ class CreateBoardPage extends Component {
               <Icon>edit_icon</Icon>
             </Button>
             <span style={{ margin: 8 + "px" }}>Construction</span>
+          </div>
+
+          <div
+            onClick={() =>
+              this.props.openDialog(
+                "upload your board images",
+                <div>
+                  <input
+                    accept="image/*"
+                    // className={classes.input}
+                    style={{ display: "none" }}
+                    id="raised-button-file"
+                    multiple
+                    type="file"
+                  />
+                  <label htmlFor="raised-button-file">
+                    <Button
+                      variant="fab"
+                      color="secondary"
+                      component="span"
+                      // className={classes.button}
+                    >
+                    <Icon>add_icon</Icon>
+                    </Button>
+                  </label>{" "}
+                </div>
+              )
+            }
+          >
+            <Button
+              variant="flat"
+              color="default"
+              aria-label="Image"
+              className={styles.button_edit}
+            >
+              <Icon>add_icon</Icon>
+            </Button>
+            <span style={{ margin: 8 + "px" }}>Images</span>
           </div>
         </Card>
       </div>
@@ -225,6 +304,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     fetchBoards: () => dispatch(new FetchBoardsAction()),
+    fetchNewBoard: () => dispatch(new FetchNewBoardAction(newBoard)),
     fetchBoardsOptions: () => dispatch(new FetchBoardsOptionsAction()),
     openDialog: (title, component) =>
       dispatch(new OpenDialogAction(title, component)),
