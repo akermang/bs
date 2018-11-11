@@ -34,7 +34,6 @@ class SearchresultsPage extends Component {
 
   render() {
     const { boards } = this.props;
-    console.log(boards)
     return (
       <div className={styles.container}>
         <Typography variant="display1" component="h3">
