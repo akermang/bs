@@ -33,5 +33,10 @@ export default {
     url: id => `/api/boards/${id}`,
     method: 'GET',
     contentType: 'application/json'
+  },
+  getBoardByUserId: {
+    url: id => `/api/boards/byUserId/${id}`,
+    method: 'GET',
+    contentType: 'application/json'
   }
 };

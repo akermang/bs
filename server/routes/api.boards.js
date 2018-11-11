@@ -2,8 +2,9 @@ const express = require("express");
 const router = express.Router();
 const Sequelize = require("Sequelize");
 const db = require("../getDb.js");
+const allBoards = require("../mock/surfboards.json");
 const BoardImages = require("../mock/images.json");
-const BoardsOptions =require("../mock/BoardsOptions.json");
+const BoardsOptions = require("../mock/BoardsOptions.json");
 
 db.sync();
 // db.sync({force: true});
@@ -102,48 +103,16 @@ router.post("/", (req, res) => {
   });
 });
 
-let mockSurfboard = []
-const surfboards = (()=> Board.findAll()
-    .then(boardsArray => {
-      let index = 0;
-      boardsArray.forEach((element, i) => {
-        index>9? index = 0: null;
-        let imgArray =[BoardImages.images[index],BoardImages.images[index+1],BoardImages.images[index+2]]
-        element.dataValues["images"] = imgArray;
-        index++
-      });
-      mockSurfboard = boardsArray
-      return boardsArray;
-    }))()
-
-   
-   
-    
-    
-
 // Get all boards
 router.get("/", (req, res) => {
-  Board.findAll()
-    .then(boardsArray => {
-      let index = 0;
-      boardsArray.forEach((element, i) => {
-        index>9? index = 0: null;
-        let imgArray =[BoardImages.images[index],BoardImages.images[index+1],BoardImages.images[index+2]]
-        element.dataValues["images"] = imgArray;
-        index++
-      });
-      return boardsArray;
-    })
-    .then(boardsArray => {
-      res.status(200).send(boardsArray);
-    });
+  res.status(200).send(allBoards);
 });
 
 //post boards by selection
 router.post("/bySelection", (req, res) => {
-  res.status(200).send(mockSurfboard);
-  console.log("req.body:", req.body)
-  console.log("req.params:", req.params)
+  res.status(200).send(allBoards);
+  console.log("req.body:", req.body);
+  console.log("req.params:", req.params);
 });
 
 //get boards options
@@ -154,8 +123,17 @@ router.get("/options", (req, res) => {
 // Get board by Id
 router.get("/:id", (req, res) => {
   const { id } = req.params;
-  let board = mockSurfboard[id-1]
+  let board = allBoards[id - 1];
   res.status(200).send(JSON.stringify(board));
+});
+
+// Get boards by Id
+router.get("/byUserId/:id", (req, res) => {
+  const { id } = req.params;
+  let boards = allBoards.filter((obj)=>{
+    return obj.userId == id
+  })
+  res.status(200).send(JSON.stringify(boards));
 });
 
 module.exports = router;
