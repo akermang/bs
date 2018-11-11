@@ -143,7 +143,7 @@ class CreateBoardPage extends Component {
           >
             <Button
               variant="flat"
-              color="accent"
+              color="default"
               aria-label="Edit"
               className={styles.button_edit}
             >
@@ -168,7 +168,7 @@ class CreateBoardPage extends Component {
           >
             <Button
               variant="flat"
-              color="accent"
+              color="default"
               aria-label="Edit"
               className={styles.button_edit}
             >
@@ -193,7 +193,7 @@ class CreateBoardPage extends Component {
           >
             <Button
               variant="flat"
-              color="accent"
+              color="default"
               aria-label="Edit"
               className={styles.button_edit}
             >

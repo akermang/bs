@@ -7,6 +7,7 @@ import { connect } from "react-redux";
 import styles from "./myShareBoards.page.scss";
 import { FetchBoardsByUserIdAction } from "../../../common/state/board/board.actions";
 import Cards from "../../components/card.Class/cardClass.component.jsx";
+import Card from "../../components/Card/Card.jsx";
 
 class MyshareboardsPage extends Component {
   constructor(props) {
@@ -28,7 +29,6 @@ class MyshareboardsPage extends Component {
 
   render() {
     const { userBoards } = this.props;
-    console.log("userBoards:", userBoards);
     return (
       <div className={styles.container}>
         <Typography variant="display1" component="h3">
@@ -43,15 +43,27 @@ class MyshareboardsPage extends Component {
             userBoards.map((board, index) => (
               <div
                 key={board.id}
-                id={board.id}
+                // id={board.id}
                 className={styles.boardCard}
                 onClick={() => this.onBoardClick(board.id)}
               >
-               
-                <Typography variant="subheading" component="p" color="textSecondary">
-                 {index +1} {board.id} {board.brand} 
-                </Typography>
-                <img src={board.images[0]} alt=""/>
+                <Card>
+                  <Typography
+                    variant="subheading"
+                    component="p"
+                    color="textSecondary"
+                  >
+                    <Button
+                      variant="flat"
+                      color="secondary"
+                      aria-label="Edit"
+                      className={styles.button_edit}
+                    >
+                      <Icon>edit_icon</Icon>
+                    </Button>
+                    {index + 1} {board.name} {board.brand}
+                  </Typography>
+                </Card>
               </div>
             ))}
         </div>
@@ -60,6 +72,7 @@ class MyshareboardsPage extends Component {
           color="primary"
           aria-label="Add"
           className={styles.button_edit}
+          onClick={() => this.onBoardClick()}
         >
           <Icon>add_icon</Icon>
         </Button>
