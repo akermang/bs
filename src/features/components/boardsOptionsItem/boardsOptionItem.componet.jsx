@@ -20,25 +20,30 @@ function ListItemLink(props) {
 
 const Boardsoptionsitem = props => {
   const { options, openDialog } = props;
+  options.label === "measures"?options.value = options.value.length:null;
+  options.label === "measures"?options.label = "length":null
 
   return (
     <div className={styles.container}>
       <div
-      onClick={() =>
-        openDialog(
-          "What Is your Board Brand ?",
-          <IntegrationReactSelect
-            placeholder={"Brand Options.."}
-            suggestions={options.value.map(suggestion => (
-              suggestion.label? {
-                label: suggestion.label
-              }:{
-                label: suggestion
-              }
-            ))}
-          />
-        )
-      }
+        onClick={() =>
+          openDialog(
+            `Board ${options.label} ?`,
+            <IntegrationReactSelect
+              placeholder={options.label}
+              suggestions={options.value.map(
+                suggestion =>
+                  suggestion.label
+                    ? {
+                        label: suggestion.label
+                      }
+                    : {
+                        label: suggestion
+                      }
+              )}
+            />
+          )
+        }
       >
         <ListItemLink href="/#/create-board">
           <Typography
@@ -66,7 +71,7 @@ Boardsoptionsitem.propTypes = {
   // onClick: PropTypes.function.isRequired,
   // placeholder: PropTypes.string.isRequired,
   // optionName: PropTypes.string,
-  // options: PropTypes.array.isRequired
+  options: PropTypes.object.isRequired
 };
 
 export default Boardsoptionsitem;

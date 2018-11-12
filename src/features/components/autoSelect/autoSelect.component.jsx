@@ -179,9 +179,10 @@ class IntegrationReactSelect extends React.Component {
       [name]: value,
     });
   };
-
+  
   render() {
-    const { classes, theme } = this.props;
+    const { classes, theme, suggestions } = this.props;
+    console.log("Auto Select suggestions:", suggestions)
 
     const selectStyles = {
       input: base => ({

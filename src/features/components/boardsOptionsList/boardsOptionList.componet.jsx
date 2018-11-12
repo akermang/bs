@@ -55,7 +55,7 @@ const Boardsoptionslist = props => {
 };
 
 Boardsoptionslist.propTypes = {
-  // options: PropTypes.array.isRequired
+  options: PropTypes.object.isRequired
 };
 
 export default Boardsoptionslist;
