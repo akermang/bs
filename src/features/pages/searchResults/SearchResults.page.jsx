@@ -44,7 +44,7 @@ class SearchresultsPage extends Component {
         </Typography>
         <GlobalsearchComponent />
 
-        <div className={styles.boardsContainer}>
+        <div className={styles.boardsContainer} style={{margin: "0 auto"}}>
           {boards && boards.map(board => (
             <div key={board.id} id={board.id} className={styles.boardCard} onClick={()=>this.onBoardClick(board.id)}>
               <Cards

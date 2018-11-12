@@ -7,6 +7,10 @@ import Icon from "@material-ui/core/Icon";
 import Card from "@material-ui/core/Card";
 import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
 import styles from "./create-board.page.scss";
 import {
   FetchBoardsAction,
@@ -53,6 +57,9 @@ class CreateBoardPage extends Component {
 
   render() {
     const { boards, options } = this.props;
+    function ListItemLink(props) {
+      return <ListItem button component="a" {...props} />;
+    }
 
     return (
       <div className={styles.container + " createBoardPage"}>
@@ -78,15 +85,22 @@ class CreateBoardPage extends Component {
               )
             }
           >
-            <Button
-              variant="flat"
-              color="primary"
-              aria-label="Edit"
-              className={styles.button_edit}
-            >
-              <Icon>edit_icon</Icon>
-            </Button>
-            <span style={{ margin: 8 + "px" }}>Brand</span>
+            <ListItemLink href="/#/create-board">
+              <Typography
+                variant="subheading"
+                component="p"
+                color="textSecondary"
+              />
+              <Button
+                variant="flat"
+                color="secondary"
+                aria-label="Edit"
+                className={styles.button_edit}
+              >
+                <Icon color="secondary">edit_icon</Icon>
+              </Button>
+              <ListItemText>Brand</ListItemText>
+            </ListItemLink>
           </div>
 
           <div
@@ -103,15 +117,22 @@ class CreateBoardPage extends Component {
               )
             }
           >
-            <Button
-              variant="flat"
-              color="primary"
-              aria-label="Edit"
-              className={styles.button_edit}
-            >
-              <Icon>edit_icon</Icon>
-            </Button>
-            <span style={{ margin: 8 + "px" }}>type</span>
+            <ListItemLink href="/#/create-board">
+              <Typography
+                variant="subheading"
+                component="p"
+                color="textSecondary"
+              />
+              <Button
+                variant="flat"
+                color="secondary"
+                aria-label="Edit"
+                className={styles.button_edit}
+              >
+                <Icon color="secondary">edit_icon</Icon>
+              </Button>
+              <ListItemText>type</ListItemText>
+            </ListItemLink>
           </div>
 
           <div
@@ -128,15 +149,22 @@ class CreateBoardPage extends Component {
               )
             }
           >
-            <Button
-              variant="flat"
-              color="secondary"
-              aria-label="Edit"
-              className={styles.button_edit}
-            >
-              <Icon>edit_icon</Icon>
-            </Button>
-            <span style={{ margin: 8 + "px" }}>model</span>
+            <ListItemLink href="/#/create-board">
+              <Typography
+                variant="subheading"
+                component="p"
+                color="textSecondary"
+              />
+              <Button
+                variant="flat"
+                color="secondary"
+                aria-label="Edit"
+                className={styles.button_edit}
+              >
+                <Icon color="secondary">edit_icon</Icon>
+              </Button>
+              <ListItemText>model</ListItemText>
+            </ListItemLink>
           </div>
 
           <div
@@ -153,15 +181,22 @@ class CreateBoardPage extends Component {
               )
             }
           >
-            <Button
-              variant="flat"
-              color="default"
-              aria-label="Edit"
-              className={styles.button_edit}
-            >
-              <Icon>edit_icon</Icon>
-            </Button>
-            <span style={{ margin: 8 + "px" }}>Fins - SetUp</span>
+            <ListItemLink href="/#/create-board">
+              <Typography
+                variant="subheading"
+                component="p"
+                color="textSecondary"
+              />
+              <Button
+                variant="flat"
+                color="secondary"
+                aria-label="Edit"
+                className={styles.button_edit}
+              >
+                <Icon color="secondary">edit_icon</Icon>
+              </Button>
+              <ListItemText>Fins Setup</ListItemText>
+            </ListItemLink>
           </div>
 
           <div
@@ -178,15 +213,22 @@ class CreateBoardPage extends Component {
               )
             }
           >
-            <Button
-              variant="flat"
-              color="default"
-              aria-label="Edit"
-              className={styles.button_edit}
-            >
-              <Icon>edit_icon</Icon>
-            </Button>
-            <span style={{ margin: 8 + "px" }}>Tail</span>
+            <ListItemLink href="/#/create-board">
+              <Typography
+                variant="subheading"
+                component="p"
+                color="textSecondary"
+              />
+              <Button
+                variant="flat"
+                color="secondary"
+                aria-label="Edit"
+                className={styles.button_edit}
+              >
+                <Icon color="secondary">edit_icon</Icon>
+              </Button>
+              <ListItemText>Tail</ListItemText>
+            </ListItemLink>
           </div>
 
           <div
@@ -205,15 +247,22 @@ class CreateBoardPage extends Component {
               )
             }
           >
-            <Button
-              variant="flat"
-              color="default"
-              aria-label="Edit"
-              className={styles.button_edit}
-            >
-              <Icon>edit_icon</Icon>
-            </Button>
-            <span style={{ margin: 8 + "px" }}>Measures</span>
+            <ListItemLink href="/#/create-board">
+              <Typography
+                variant="subheading"
+                component="p"
+                color="textSecondary"
+              />
+              <Button
+                variant="flat"
+                color="secondary"
+                aria-label="Edit"
+                className={styles.button_edit}
+              >
+                <Icon color="secondary">edit_icon</Icon>
+              </Button>
+              <ListItemText>measures</ListItemText>
+            </ListItemLink>
           </div>
 
           <div
@@ -232,53 +281,48 @@ class CreateBoardPage extends Component {
               )
             }
           >
-            <Button
-              variant="flat"
-              color="default"
-              aria-label="Edit"
-              className={styles.button_edit}
-            >
-              <Icon>edit_icon</Icon>
-            </Button>
-            <span style={{ margin: 8 + "px" }}>Construction</span>
+            <ListItemLink href="/#/create-board">
+              <Typography
+                variant="subheading"
+                component="p"
+                color="textSecondary"
+              />
+              <Button
+                variant="flat"
+                color="secondary"
+                aria-label="Edit"
+                className={styles.button_edit}
+              >
+                <Icon color="secondary">edit_icon</Icon>
+              </Button>
+              <ListItemText>Construction</ListItemText>
+            </ListItemLink>
           </div>
 
-          <div
-            onClick={() =>
-              this.props.openDialog(
-                "upload your board images",
-                <div>
-                  <input
-                    accept="image/*"
-                    // className={classes.input}
-                    style={{ display: "none" }}
-                    id="raised-button-file"
-                    multiple
-                    type="file"
-                  />
-                  <label htmlFor="raised-button-file">
-                    <Button
-                      variant="fab"
-                      color="secondary"
-                      component="span"
-                      // className={classes.button}
-                    >
+          <div>
+            <div>
+              <input
+                accept="image/*"
+                // className={classes.input}
+                style={{ display: "none" }}
+                id="raised-button-file"
+                multiple
+                type="file"
+              />
+              <label htmlFor="raised-button-file">
+                <ListItemLink>
+                  <Button
+                    variant="flat"
+                    color="secondary"
+                    component="span"
+                    // className={classes.button}
+                  >
                     <Icon>add_icon</Icon>
-                    </Button>
-                  </label>{" "}
-                </div>
-              )
-            }
-          >
-            <Button
-              variant="flat"
-              color="default"
-              aria-label="Image"
-              className={styles.button_edit}
-            >
-              <Icon>add_icon</Icon>
-            </Button>
-            <span style={{ margin: 8 + "px" }}>Images</span>
+                  </Button>
+                  <ListItemText> Images</ListItemText>
+                </ListItemLink>
+              </label>
+            </div>
           </div>
         </Card>
       </div>

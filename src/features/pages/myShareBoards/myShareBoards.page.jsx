@@ -8,7 +8,7 @@ import styles from "./myShareBoards.page.scss";
 import { FetchBoardsByUserIdAction } from "../../../common/state/board/board.actions";
 import Cards from "../../components/card.Class/cardClass.component.jsx";
 import Card from "../../components/Card/Card.jsx";
-import ListcompComponent from "../../components/list/list.component.jsx"
+import ListcompComponent from "../../components/list/list.component.jsx";
 
 class MyshareboardsPage extends Component {
   constructor(props) {
@@ -17,7 +17,6 @@ class MyshareboardsPage extends Component {
   }
 
   componentDidMount() {
-    console.log("user", this.props.user);
     this.props.fetchBoardsByUserId(this.props.user.userId);
   }
 
@@ -38,36 +37,9 @@ class MyshareboardsPage extends Component {
         <Typography variant="subheading" component="p" color="textSecondary">
           Add and Edit Your Surfboards
         </Typography>
-        <ListcompComponent/>
 
         <div className={styles.boardsContainer}>
-          {userBoards &&
-            userBoards.map((board, index) => (
-              <div
-                key={board.id}
-                // id={board.id}
-                className={styles.boardCard}
-                onClick={() => this.onBoardClick(board.id)}
-              >
-                <Card>
-                  <Typography
-                    variant="subheading"
-                    component="p"
-                    color="textSecondary"
-                  >
-                    <Button
-                      variant="flat"
-                      color="secondary"
-                      aria-label="Edit"
-                      className={styles.button_edit}
-                    >
-                      <Icon>edit_icon</Icon>
-                    </Button>
-                    {index + 1} {board.name} {board.brand}
-                  </Typography>
-                </Card>
-              </div>
-            ))}
+          <ListcompComponent boards={userBoards} />
         </div>
         <Button
           variant="fab"
