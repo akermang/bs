@@ -207,22 +207,6 @@ class IntegrationReactSelect extends React.Component {
             autoFocus={true}
           />
           <div className={classes.divider} />
-          {/* <Select
-            classes={classes}
-            styles={selectStyles}
-            textFieldProps={{
-              label: 'Label',
-              InputLabelProps: {
-                shrink: true,
-              },
-            }}
-            options={suggestions}
-            components={components}
-            value={this.state.multi}
-            onChange={this.handleChange('multi')}
-            placeholder="Select multiple countries"
-            isMulti
-          /> */}
         </NoSsr>
       </div>
     );

@@ -6,7 +6,7 @@ import styles from "./dialog.component.scss";
 import Button from "@material-ui/core/Button";
 import { translate } from "react-i18next";
 
-const DialogComponent = ({ component, title, closeDialog, open, isRtl, t, handler }) => (
+const DialogComponent = ({ component, title, closeDialog, open, isRtl, t, callBack }) => (
   
   <Dialog
     style={isRtl ? { direction: "rtl" } : null}
@@ -25,7 +25,7 @@ const DialogComponent = ({ component, title, closeDialog, open, isRtl, t, handle
       <Button onClick={()=>closeDialog()} color="primary">
         {t("SKIP")}
       </Button>
-      <Button onClick={this.handleOk} color="primary">
+      <Button onClick={()=>callBack} color="primary">
         {t("OK")}
       </Button>
     </DialogActions>
