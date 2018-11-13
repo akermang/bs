@@ -10,6 +10,7 @@ export const ASYNC_EXAMPLE = "ASYNC_EXAMPLE";
 export const FETCH_BOARDS_BY_ID = "FETCH_BOARDS_BY_ID";
 export const FETCH_BOARDS_BY_USER_ID = "FETCH_BOARDS_BY_USER_ID";
 export const FETCH_NEW_BOARD = "FETCH_NEW_BOARD";
+export const EDIT_BOARD = "EDIT_BOARD";
 
 /**
  * Async actions
@@ -69,9 +70,9 @@ export const FetchBoardsByUserIdAction = createAsyncAction(
 /**
  * Sync actions
  * */
-export function SyncExampleAction(payload) {
+export function editBoardAction(payload) {
   return {
-    type: SYNC_EXAMPLE,
+    type: EDIT_BOARD,
     payload
   };
 }

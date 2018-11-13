@@ -6,8 +6,15 @@ import styles from "./dialog.component.scss";
 import Button from "@material-ui/core/Button";
 import { translate } from "react-i18next";
 
-const DialogComponent = ({ component, title, closeDialog, open, isRtl, t, callBack }) => (
-  
+const DialogComponent = ({
+  component,
+  title,
+  closeDialog,
+  open,
+  isRtl,
+  t,
+  callBack
+}) => (
   <Dialog
     style={isRtl ? { direction: "rtl" } : null}
     style={{ alignItems: 0 }}
@@ -17,22 +24,19 @@ const DialogComponent = ({ component, title, closeDialog, open, isRtl, t, callBa
     onClose={() => closeDialog()}
     className={styles.dialog}
   >
-  {console.log(this)}
     <DialogTitle className={styles.title}>{title}</DialogTitle>
 
     <DialogContent className={styles.content}>{component}</DialogContent>
     <DialogActions>
-      <Button onClick={()=>closeDialog()} color="primary">
+      <Button onClick={() => closeDialog()} color="primary">
         {t("SKIP")}
       </Button>
-      <Button onClick={()=>callBack} color="primary">
+      <Button onClick={() => callBack} color="primary">
         {t("OK")}
       </Button>
     </DialogActions>
   </Dialog>
 );
-
-
 
 DialogComponent.propTypes = {
   open: PropTypes.bool.isRequired,
@@ -45,4 +49,4 @@ DialogComponent.propTypes = {
 
 DialogComponent.defaultProps = { title: "", isRtl: false };
 
-export default translate()(DialogComponent)
+export default translate()(DialogComponent);

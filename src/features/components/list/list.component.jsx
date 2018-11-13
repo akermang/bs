@@ -14,6 +14,8 @@ import Button from "@material-ui/core/Button";
 import Card from "../../components/Card/Card.jsx";
 import Avatar from "@material-ui/core/Avatar";
 
+const addImagePath =
+  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4PHSZ5XYUZhXEtROgSVM2RWJzW7UbX0MtyToU9g6locdX5jOwjQ";
 const styles = theme => ({
   root: {
     width: "100%",
@@ -25,7 +27,6 @@ const styles = theme => ({
     display: "flex",
     justifyContent: "space-around"
   }
-
 });
 
 function ListItemLink(props) {
@@ -33,38 +34,40 @@ function ListItemLink(props) {
 }
 
 function ListcompComponent(props) {
-  const { classes, boards } = props;
+  const { classes, boards, clickCallBack } = props;
   return (
     <div className={classes.root}>
       <List component="nav">
         <div className={styles.boardsContainer}>
           {boards &&
             boards.map((board, index) => (
-              <div
-                key={board.id}
-                className={styles.boardCard}
-                onClick={() => this.onBoardClick(board.id)}
-              >
-                <Card>
-                  <ListItemLink className={classes.listItemBoard} href="/#/create-board">
-                    <Avatar alt="Remy Sharp" src={board.images[0]} />
-                    <Typography
-                      variant="subheading"
-                      component="p"
-                      color="textSecondary"
-                    >
-                      {index + 1} {board.name} {board.brand}
-                    </Typography>
-                    <Button
-                      variant="flat"
-                      color="secondary"
-                      aria-label="Edit"
-                      className={styles.button_edit}
-                    >
-                      <Icon color="secondary">edit_icon</Icon>
-                    </Button>
-                  </ListItemLink>
-                </Card>
+              <div key={board.id} className={styles.boardCard}>
+                <div onClick={()=> clickCallBack(board)}>
+                  <Card>
+                    <ListItemLink className={classes.listItemBoard}>
+                      {board.images ? (
+                        <Avatar alt="Remy Sharp" src={board.images[0]} />
+                      ) : (
+                        <Avatar src={addImagePath} />
+                      )}
+                      <Typography
+                        variant="subheading"
+                        component="p"
+                        color="textSecondary"
+                      >
+                        {index + 1} {board.name} {board.brand}
+                      </Typography>
+                      <Button
+                        variant="flat"
+                        color="secondary"
+                        aria-label="Edit"
+                        className={styles.button_edit}
+                      >
+                        <Icon color="secondary">edit_icon</Icon>
+                      </Button>
+                    </ListItemLink>
+                  </Card>
+                </div>
               </div>
             ))}
         </div>

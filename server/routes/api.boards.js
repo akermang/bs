@@ -6,101 +6,17 @@ const allBoards = require("../mock/surfboards.json");
 const BoardImages = require("../mock/images.json");
 const BoardsOptions = require("../mock/BoardsOptions.json");
 
-db.sync();
-// db.sync({force: true});
-
-const ImagePath = db.define("imagePath", {
-  path: {
-    type: Sequelize.STRING
-  }
-});
-
-const Board = db.define("board", {
-  brand: {
-    type: Sequelize.STRING
-  },
-  type: {
-    type: Sequelize.STRING
-  },
-  model: {
-    type: Sequelize.STRING
-  },
-  length: {
-    type: Sequelize.STRING
-  },
-  thickness: {
-    type: Sequelize.STRING
-  },
-  // width: {
-  //   type: Sequelize.STRING
-  // },
-  volume: {
-    type: Sequelize.STRING
-  },
-  finSetUp: {
-    type: Sequelize.STRING
-  },
-  tail: {
-    type: Sequelize.STRING
-  },
-  finSconstruction: {
-    type: Sequelize.STRING
-  },
-  location: {
-    type: Sequelize.STRING
-  },
-  userId: {
-    type: Sequelize.STRING
-  }
-});
-
-Board.hasMany(ImagePath, { as: "Images" });
-
 /**
  * Api routes
  */
 
 // Create new board
 router.post("/", (req, res) => {
-  const {
-    brand,
-    type,
-    model,
-    length,
-    thickness,
-    width,
-    volume,
-    finSetUp,
-    tail,
-    construction,
-    location,
-    userId,
-    images
-  } = req.body;
-  Board.findAll().then(() => {
-    return Board.create({
-      brand,
-      location,
-      type,
-      model,
-      length,
-      thickness,
-      width,
-      volume,
-      finSetUp,
-      tail,
-      construction,
-      userId,
-      images
-    }).then(board => {
-      if (images) {
-        ImagePath.create({ path: images }).then(imgs => {
-          board.setImages(imgs);
-        });
-      }
-      res.status(200).send(JSON.stringify(board));
-    });
-  });
+  const { newBoard } = req.body;
+  let id = allBoards.length + 10
+  newBoard["id"] = id;
+  allBoards.push(newBoard);
+  res.status(200).send(JSON.stringify(newBoard));
 });
 
 // Get all boards
@@ -127,12 +43,12 @@ router.get("/:id", (req, res) => {
   res.status(200).send(JSON.stringify(board));
 });
 
-// Get boards by Id
+// Get boards by user Id
 router.get("/byUserId/:id", (req, res) => {
   const { id } = req.params;
-  let boards = allBoards.filter((obj)=>{
-    return obj.userId == id
-  })
+  let boards = allBoards.filter(obj => {
+    return obj.userId == id;
+  });
   res.status(200).send(JSON.stringify(boards));
 });
 

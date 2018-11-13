@@ -5,10 +5,19 @@ import Button from "@material-ui/core/Button";
 import Icon from "@material-ui/core/Icon";
 import { connect } from "react-redux";
 import styles from "./myShareBoards.page.scss";
-import { FetchBoardsByUserIdAction } from "../../../common/state/board/board.actions";
+import {
+  FetchBoardsByUserIdAction,
+  FetchNewBoardAction,
+  editBoardAction
+} from "../../../common/state/board/board.actions";
 import Cards from "../../components/card.Class/cardClass.component.jsx";
 import Card from "../../components/Card/Card.jsx";
 import ListcompComponent from "../../components/list/list.component.jsx";
+import {
+  OpenDialogAction,
+  CloseDialogAction
+} from "../../../common/state/dialog/dialog.actions";
+import TextField from "@material-ui/core/TextField";
 
 class MyshareboardsPage extends Component {
   constructor(props) {
@@ -20,11 +29,55 @@ class MyshareboardsPage extends Component {
     this.props.fetchBoardsByUserId(this.props.user.userId);
   }
 
-  onBoardClick() {
+  editBoard(board) {
+    this.props.dispatchEditBoard(board);
     this.props.history.push({
       pathname: "/create-board"
       // search: `?boardId=${id}&dates=${'gal dates'}`
     });
+  }
+
+  onBoardClick (board) {
+    this.editBoard(board);
+  }
+
+  
+
+  addBoard (){
+    this.props.openDialog(
+      "give your board a name",
+      <div className={styles.nameInput}>
+        <TextField
+          autoFocus
+          style={{ width: 100 + "%" }}
+          variant="outlined"
+          label="Board name"
+          // value={this.state.selectedDates}
+        />
+        <Button
+          variant="fab"
+          color="primary"
+          aria-label="Add"
+          className={styles.button_edit}
+          onClick={() =>
+            this.props
+              .fetchNewBoard({
+                name: "Gal new board",
+                userId: this.props.user.userId
+              })
+              .then(res => {
+                this.props.history.push({
+                  pathname: "/create-board"
+                  // search: `?boardId=${id}&dates=${'gal dates'}`
+                });
+                this.props.closeDialog();
+              })
+          }
+        >
+          <Icon>add_icon</Icon>
+        </Button>
+      </div>
+    );
   }
 
   render() {
@@ -39,14 +92,17 @@ class MyshareboardsPage extends Component {
         </Typography>
 
         <div className={styles.boardsContainer}>
-          <ListcompComponent boards={userBoards} />
+          <ListcompComponent
+            clickCallBack={e => this.onBoardClick(e)}
+            boards={userBoards}
+          />
         </div>
         <Button
           variant="fab"
           color="primary"
           aria-label="Add"
           className={styles.button_edit}
-          onClick={() => this.onBoardClick()}
+          onClick={() => this.addBoard()}
         >
           <Icon>add_icon</Icon>
         </Button>
@@ -69,7 +125,12 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     fetchBoardsByUserId: userId =>
-      dispatch(new FetchBoardsByUserIdAction(userId))
+      dispatch(new FetchBoardsByUserIdAction(userId)),
+    openDialog: (title, component, type, handler) =>
+      dispatch(new OpenDialogAction(title, component, type, handler)),
+    fetchNewBoard: newBoard => dispatch(new FetchNewBoardAction(newBoard)),
+    closeDialog: () => dispatch(new CloseDialogAction()),
+    dispatchEditBoard: board => dispatch(new editBoardAction(board))
   };
 }
 

@@ -12,6 +12,7 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import styles from "./create-board.page.scss";
+import Boardsoptionslist from "../../components/boardsOptionsList/boardsOptionList.componet.jsx";
 import {
   FetchBoardsAction,
   FetchNewBoardAction,
@@ -31,32 +32,21 @@ class CreateBoardPage extends Component {
     this.state = {};
   }
   componentDidMount() {
+    // let callBack = this.createBoardCallBack
     this.props.fetchBoardsOptions().then(res => {
       const suggestions = this.props.options.brand.map(suggestion => ({
         value: suggestion.label,
         label: suggestion.label
       }));
-      this.props.openDialog(
-        "give your board a name",
-        <div className={styles.nameInput}>
-          <TextField
-            autoFocus
-            style={{ width: 100 + "%" }}
-            variant="outlined"
-            label="Board name"
-            value={this.state.selectedDates}
-          />
-        </div>,
-        this.createBoard
-      );
     });
   }
-  createBoard = board => {
+  createBoardCallBack = board => {
     console.log(board);
   };
 
   render() {
-    const { boards, options } = this.props;
+    const { boards, options, openDialog, editBoard } = this.props;
+
     function ListItemLink(props) {
       return <ListItem button component="a" {...props} />;
     }
@@ -67,264 +57,9 @@ class CreateBoardPage extends Component {
           {this.props.t("CREATE_BOARD_PAGE")}
         </Typography>
         <Typography variant="subheading" component="p" color="textSecondary">
-          create..save..update..share.. your ShareBoard page detailes
+          {`Edit ${editBoard.name} detailes`}
         </Typography>
-
-        <Card>
-          <div
-            onClick={() =>
-              this.props.openDialog(
-                "What Is your Board Brand ?",
-                <IntegrationReactSelect
-                  placeholder={"Brand Options.."}
-                  suggestions={this.props.options.brand.map(suggestion => ({
-                    value: suggestion.label,
-                    label: suggestion.label
-                  }))}
-                />
-              )
-            }
-          >
-            <ListItemLink href="/#/create-board">
-              <Typography
-                variant="subheading"
-                component="p"
-                color="textSecondary"
-              />
-              <Button
-                variant="flat"
-                color="secondary"
-                aria-label="Edit"
-                className={styles.button_edit}
-              >
-                <Icon color="secondary">edit_icon</Icon>
-              </Button>
-              <ListItemText>Brand</ListItemText>
-            </ListItemLink>
-          </div>
-
-          <div
-            onClick={() =>
-              this.props.openDialog(
-                "What Is your Board Type ?",
-                <IntegrationReactSelect
-                  placeholder={"Type"}
-                  suggestions={this.props.options.type.map(suggestion => ({
-                    value: suggestion,
-                    label: suggestion
-                  }))}
-                />
-              )
-            }
-          >
-            <ListItemLink href="/#/create-board">
-              <Typography
-                variant="subheading"
-                component="p"
-                color="textSecondary"
-              />
-              <Button
-                variant="flat"
-                color="secondary"
-                aria-label="Edit"
-                className={styles.button_edit}
-              >
-                <Icon color="secondary">edit_icon</Icon>
-              </Button>
-              <ListItemText>type</ListItemText>
-            </ListItemLink>
-          </div>
-
-          <div
-            onClick={() =>
-              this.props.openDialog(
-                "What Is your Board Model ?",
-                <IntegrationReactSelect
-                  placeholder={"Model"}
-                  suggestions={this.props.options.model.map(suggestion => ({
-                    value: suggestion,
-                    label: suggestion
-                  }))}
-                />
-              )
-            }
-          >
-            <ListItemLink href="/#/create-board">
-              <Typography
-                variant="subheading"
-                component="p"
-                color="textSecondary"
-              />
-              <Button
-                variant="flat"
-                color="secondary"
-                aria-label="Edit"
-                className={styles.button_edit}
-              >
-                <Icon color="secondary">edit_icon</Icon>
-              </Button>
-              <ListItemText>model</ListItemText>
-            </ListItemLink>
-          </div>
-
-          <div
-            onClick={() =>
-              this.props.openDialog(
-                "What Is your Board Fins-Setup ?",
-                <IntegrationReactSelect
-                  placeholder={"Fins - SetUp"}
-                  suggestions={this.props.options.finSetUp.map(suggestion => ({
-                    value: suggestion,
-                    label: suggestion
-                  }))}
-                />
-              )
-            }
-          >
-            <ListItemLink href="/#/create-board">
-              <Typography
-                variant="subheading"
-                component="p"
-                color="textSecondary"
-              />
-              <Button
-                variant="flat"
-                color="secondary"
-                aria-label="Edit"
-                className={styles.button_edit}
-              >
-                <Icon color="secondary">edit_icon</Icon>
-              </Button>
-              <ListItemText>Fins Setup</ListItemText>
-            </ListItemLink>
-          </div>
-
-          <div
-            onClick={() =>
-              this.props.openDialog(
-                "Board Tail ?",
-                <IntegrationReactSelect
-                  placeholder={"Tail style"}
-                  suggestions={this.props.options.tail.map(suggestion => ({
-                    value: suggestion,
-                    label: suggestion
-                  }))}
-                />
-              )
-            }
-          >
-            <ListItemLink href="/#/create-board">
-              <Typography
-                variant="subheading"
-                component="p"
-                color="textSecondary"
-              />
-              <Button
-                variant="flat"
-                color="secondary"
-                aria-label="Edit"
-                className={styles.button_edit}
-              >
-                <Icon color="secondary">edit_icon</Icon>
-              </Button>
-              <ListItemText>Tail</ListItemText>
-            </ListItemLink>
-          </div>
-
-          <div
-            onClick={() =>
-              this.props.openDialog(
-                "Board MEASURES",
-                <IntegrationReactSelect
-                  placeholder={"MEASURES"}
-                  suggestions={this.props.options.measures.length.map(
-                    suggestion => ({
-                      value: suggestion,
-                      label: suggestion
-                    })
-                  )}
-                />
-              )
-            }
-          >
-            <ListItemLink href="/#/create-board">
-              <Typography
-                variant="subheading"
-                component="p"
-                color="textSecondary"
-              />
-              <Button
-                variant="flat"
-                color="secondary"
-                aria-label="Edit"
-                className={styles.button_edit}
-              >
-                <Icon color="secondary">edit_icon</Icon>
-              </Button>
-              <ListItemText>measures</ListItemText>
-            </ListItemLink>
-          </div>
-
-          <div
-            onClick={() =>
-              this.props.openDialog(
-                "Board Construction ?",
-                <IntegrationReactSelect
-                  placeholder={"Construction PU/EPS.."}
-                  suggestions={this.props.options.construction.map(
-                    suggestion => ({
-                      value: suggestion,
-                      label: suggestion
-                    })
-                  )}
-                />
-              )
-            }
-          >
-            <ListItemLink href="/#/create-board">
-              <Typography
-                variant="subheading"
-                component="p"
-                color="textSecondary"
-              />
-              <Button
-                variant="flat"
-                color="secondary"
-                aria-label="Edit"
-                className={styles.button_edit}
-              >
-                <Icon color="secondary">edit_icon</Icon>
-              </Button>
-              <ListItemText>Construction</ListItemText>
-            </ListItemLink>
-          </div>
-
-          <div>
-            <div>
-              <input
-                accept="image/*"
-                // className={classes.input}
-                style={{ display: "none" }}
-                id="raised-button-file"
-                multiple
-                type="file"
-              />
-              <label htmlFor="raised-button-file">
-                <ListItemLink>
-                  <Button
-                    variant="flat"
-                    color="secondary"
-                    component="span"
-                    // className={classes.button}
-                  >
-                    <Icon>add_icon</Icon>
-                  </Button>
-                  <ListItemText> Images</ListItemText>
-                </ListItemLink>
-              </label>
-            </div>
-          </div>
-        </Card>
+        <Boardsoptionslist options={options} openDialog={openDialog} />
       </div>
     );
   }
@@ -341,7 +76,8 @@ CreateBoardPage.defaultProps = {
 function mapStateToProps(state) {
   return {
     boards: state.board.boards,
-    options: state.board.options
+    options: state.board.options,
+    editBoard: state.board.newBoard
   };
 }
 
