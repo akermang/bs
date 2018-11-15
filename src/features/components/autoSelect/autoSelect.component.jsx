@@ -209,7 +209,7 @@ class IntegrationReactSelect extends React.Component {
           <Select
             classes={classes}
             styles={selectStyles}
-            options={this.props.suggestions}
+            options={suggestions}
             components={components}
             value={this.state.single}
             onChange={this.handleChange("single")}

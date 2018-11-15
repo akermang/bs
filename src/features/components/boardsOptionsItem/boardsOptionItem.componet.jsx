@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import styles from "./boardsOptionItem.componet.scss";
 import Button from "@material-ui/core/Button";
@@ -18,53 +18,74 @@ function ListItemLink(props) {
   return <ListItem button component="a" {...props} />;
 }
 
-const Boardsoptionsitem = props => {
-  const { options, openDialog } = props;
-  options.label === "measures"?options.value = options.value.length:null;
-  options.label === "measures"?options.label = "length":null
+class Boardsoptionsitem extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      editMode: false
+    };
+  }
 
-  return (
-    <div className={styles.container}>
-      <div
-        onClick={() =>
-          openDialog(
-            `Board ${options.label} ?`,
-            <IntegrationReactSelect
-              placeholder={options.label}
-              suggestions={options.value.map(
-                suggestion =>
-                  suggestion.label
-                    ? {
-                        label: suggestion.label
-                      }
-                    : {
-                        label: suggestion
-                      }
-              )}
-            />
-          )
-        }
-      >
-        <ListItemLink href="/#/create-board">
-          <Typography
-            variant="subheading"
-            component="p"
-            color="textSecondary"
-          />
-          <Button
-            variant="flat"
-            color="secondary"
-            aria-label="Edit"
-            // className={styles.button_edit}
-          >
-            <Icon color="secondary">edit_icon</Icon>
-          </Button>
-          <ListItemText>{options.label}</ListItemText>
-        </ListItemLink>
+  toggleEdit() {
+    this.setState(
+      this.state.editMode ? { editMode: false } : { editMode: true }
+    );
+  }
+
+  render() {
+    const { options, openDialog } = this.props;
+    options.label === "measures"
+      ? (options.value = options.value.length)
+      : null;
+    options.label === "measures" ? (options.label = "length") : null;
+
+    return (
+      <div className={styles.container}>
+        <div onClick={() => this.toggleEdit()}>
+          <ListItemLink>
+            {this.state.editMode &&
+              options &&
+              options.value &&
+              (<div>{`Board ${options.label} ?`}</div>,
+              (
+                <IntegrationReactSelect
+                  placeholder={options.label}
+                  suggestions={options.value.map(
+                    suggestion =>
+                      suggestion.label
+                        ? {
+                            label: suggestion.label
+                          }
+                        : {
+                            label: suggestion
+                          }
+                  )}
+                />
+              ))}
+            {!this.state.editMode && (
+              <ListItem>
+                <Typography
+                  variant="subheading"
+                  component="p"
+                  color="textSecondary"
+                />
+                <Button
+                  variant="flat"
+                  color="secondary"
+                  aria-label="Edit"
+                  // className={styles.button_edit}
+                >
+                  <Icon color="secondary">edit_icon</Icon>
+                </Button>
+                <ListItemText>{options.label}</ListItemText>
+              </ListItem>
+            )}
+          </ListItemLink>
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 Boardsoptionsitem.propTypes = {
   // title: PropTypes.string.isRequired,
