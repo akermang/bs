@@ -27,11 +27,6 @@ class Boardsoptionsitem extends Component {
       boardHasOptionValue: false
     };
   }
-  componentDidMount() {
-    const { board, options } = this.props;
-    console.log("did board:", board);
-    console.log("did option:", options);
-  }
 
   toggleEdit() {
     this.setState(
@@ -49,7 +44,6 @@ class Boardsoptionsitem extends Component {
     if (board && board[options.label]) {
       renderBoardOption = true;
     } else if (board) {
-      console.log(`board ${board.id} has no ${options.label}`);
     }
 
     return (
