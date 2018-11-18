@@ -13,6 +13,7 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import Typography from "@material-ui/core/Typography";
 import IntegrationReactSelect from "../../components/autoSelect/autoSelect.component.jsx";
+import Paper from "@material-ui/core/Paper";
 
 function ListItemLink(props) {
   return <ListItem button component="a" {...props} />;
@@ -41,29 +42,35 @@ class Boardsoptionsitem extends Component {
 
     return (
       <div className={styles.container}>
-        <div onClick={() => this.toggleEdit()}>
+        <div>
           <ListItemLink>
             {this.state.editMode &&
               options &&
-              options.value &&
-              (<div>{`Board ${options.label} ?`}</div>,
-              (
-                <IntegrationReactSelect
-                  placeholder={options.label}
-                  suggestions={options.value.map(
-                    suggestion =>
-                      suggestion.label
-                        ? {
-                            label: suggestion.label
-                          }
-                        : {
-                            label: suggestion
-                          }
-                  )}
-                />
-              ))}
+              options.value && (
+                <div className={styles.selectContainer}>
+                  <div>
+                    <Button>set</Button>
+                    <Button>skip</Button>
+                  </div>
+                  <ListItem>
+                    <IntegrationReactSelect
+                      placeholder={options.label}
+                      suggestions={options.value.map(
+                        suggestion =>
+                          suggestion.label
+                            ? {
+                                label: suggestion.label
+                              }
+                            : {
+                                label: suggestion
+                              }
+                      )}
+                    />
+                  </ListItem>
+                </div>
+              )}
             {!this.state.editMode && (
-              <ListItem>
+              <ListItem onClick={() => this.toggleEdit()}>
                 <Typography
                   variant="subheading"
                   component="p"
