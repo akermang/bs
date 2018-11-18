@@ -13,26 +13,24 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import styles from "./create-board.page.scss";
 import Boardsoptionslist from "../../components/boardsOptionsList/boardsOptionList.componet.jsx";
+import queryString from "query-string";
 import {
-  FetchBoardsAction,
-  FetchNewBoardAction,
-  FetchBoardsOptionsAction
+  FetchBoardsOptionsAction,
+  FetchBoardByIdAction
 } from "../../../common/state/board/board.actions";
 import Typography from "@material-ui/core/Typography";
 import { translate } from "react-i18next";
-import IntegrationReactSelect from "../../components/autoSelect/autoSelect.component.jsx";
-import {
-  OpenDialogAction,
-  CloseDialogAction
-} from "../../../common/state/dialog/dialog.actions";
 
 class CreateBoardPage extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { board: null };
   }
   componentDidMount() {
-    // let callBack = this.createBoardCallBack
+    const values = queryString.parse(this.props.location.search);
+    this.props.fetchBoardById(values.boardId).then(res => {
+      this.setState({ board: res });
+    });
     this.props.fetchBoardsOptions().then(res => {
       const suggestions = this.props.options.brand.map(suggestion => ({
         value: suggestion.label,
@@ -40,12 +38,10 @@ class CreateBoardPage extends Component {
       }));
     });
   }
-  createBoardCallBack = board => {
-    console.log(board);
-  };
 
   render() {
     const { boards, options, openDialog, editBoard } = this.props;
+    const board = this.state.board;
 
     function ListItemLink(props) {
       return <ListItem button component="a" {...props} />;
@@ -56,10 +52,10 @@ class CreateBoardPage extends Component {
         <Typography variant="display1" component="h3">
           {this.props.t("CREATE_BOARD_PAGE")}
         </Typography>
-        <Typography variant="subheading" component="p" color="textSecondary">
-          {`Edit ${editBoard.name} detailes`}
+        <Typography variant="subheading" component="h4" color="textSecondary">
+          {board && board.name ? `Edit ${board.name} detailes` : "NO BOARD"}
         </Typography>
-        <Boardsoptionslist options={options} openDialog={openDialog} />
+        <Boardsoptionslist options={options} board={board} openDialog={openDialog} />
       </div>
     );
   }
@@ -83,12 +79,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    fetchBoards: () => dispatch(new FetchBoardsAction()),
-    fetchNewBoard: () => dispatch(new FetchNewBoardAction(newBoard)),
     fetchBoardsOptions: () => dispatch(new FetchBoardsOptionsAction()),
-    openDialog: (title, component) =>
-      dispatch(new OpenDialogAction(title, component)),
-    closeDialog: () => dispatch(new CloseDialogAction())
+    fetchBoardById: id => dispatch(new FetchBoardByIdAction(id))
   };
 }
 

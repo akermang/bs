@@ -21,7 +21,7 @@ class BoardPage extends Component {
   componentDidMount() {
     const values = queryString.parse(this.props.location.search);
     this.props.fetchBoardById(values.boardId);
-    this.setState({ id: values.boardId });
+    // this.setState({ id: values.boardId });
   }
 
   render() {

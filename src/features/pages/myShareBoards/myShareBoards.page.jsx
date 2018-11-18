@@ -22,28 +22,31 @@ import TextField from "@material-ui/core/TextField";
 class MyshareboardsPage extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { inputValue: "" };
   }
 
   componentDidMount() {
     this.props.fetchBoardsByUserId(this.props.user.userId);
   }
 
+  inputChanged(e) {
+    let value = e.target.value;
+    this.setState({ inputValue: value });
+  }
+
   editBoard(board) {
     this.props.dispatchEditBoard(board);
     this.props.history.push({
-      pathname: "/create-board"
-      // search: `?boardId=${id}&dates=${'gal dates'}`
+      pathname: "/create-board",
+      search: `?boardId=${board.id}`
     });
   }
 
-  onBoardClick (board) {
+  onBoardClick(board) {
     this.editBoard(board);
   }
 
-  
-
-  addBoard (){
+  addBoard() {
     this.props.openDialog(
       "give your board a name",
       <div className={styles.nameInput}>
@@ -52,7 +55,7 @@ class MyshareboardsPage extends Component {
           style={{ width: 100 + "%" }}
           variant="outlined"
           label="Board name"
-          // value={this.state.selectedDates}
+          onChange={(e) => this.inputChanged(e)}
         />
         <Button
           variant="fab"
@@ -62,14 +65,11 @@ class MyshareboardsPage extends Component {
           onClick={() =>
             this.props
               .fetchNewBoard({
-                name: "Gal new board",
+                name: this.state.inputValue,
                 userId: this.props.user.userId
               })
               .then(res => {
-                this.props.history.push({
-                  pathname: "/create-board"
-                  // search: `?boardId=${id}&dates=${'gal dates'}`
-                });
+                this.editBoard(res);
                 this.props.closeDialog();
               })
           }

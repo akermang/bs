@@ -39,8 +39,8 @@ router.get("/options", (req, res) => {
 // Get board by Id
 router.get("/:id", (req, res) => {
   const { id } = req.params;
-  let board = allBoards[id - 1];
-  res.status(200).send(JSON.stringify(board));
+  const result = allBoards.find( board => board.id == id );
+  res.status(200).send(JSON.stringify(result));
 });
 
 // Get boards by user Id

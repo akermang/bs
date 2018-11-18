@@ -8,24 +8,18 @@ import Icon from "@material-ui/core/Icon";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItem from "@material-ui/core/ListItem";
 
-
 function ListItemLink(props) {
   return <ListItem button component="a" {...props} />;
 }
 
 const Boardsoptionslist = props => {
-  const { options, openDialog} = props;
+  const { options, board } = props;
   const optionsArry = Object.keys(options).map(key => {
     return { value: options[key], label: key };
   });
   return (
     <div className={styles.container}>
       <Card>
-        {optionsArry &&
-          optionsArry.map((option, index) => (
-            <Boardsoptionsitem key={index} options={option} openDialog={openDialog}/>
-          ))}
-
         <div>
           <input
             accept="image/*"
@@ -49,6 +43,10 @@ const Boardsoptionslist = props => {
             </ListItemLink>
           </label>
         </div>
+        {optionsArry &&
+          optionsArry.map((option, index) => (
+            <Boardsoptionsitem key={index} options={option} board={board} />
+          ))}
       </Card>
     </div>
   );

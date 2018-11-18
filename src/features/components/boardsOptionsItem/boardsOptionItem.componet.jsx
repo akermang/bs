@@ -23,8 +23,14 @@ class Boardsoptionsitem extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      editMode: false
+      editMode: false,
+      boardHasOptionValue: false
     };
+  }
+  componentDidMount() {
+    const { board, options } = this.props;
+    console.log("did board:", board);
+    console.log("did option:", options);
   }
 
   toggleEdit() {
@@ -34,23 +40,57 @@ class Boardsoptionsitem extends Component {
   }
 
   render() {
-    const { options, openDialog } = this.props;
+    const { options, board } = this.props;
+    let renderBoardOption = false;
     options.label === "measures"
       ? (options.value = options.value.length)
       : null;
     options.label === "measures" ? (options.label = "length") : null;
+    if (board && board[options.label]) {
+      renderBoardOption = true;
+    } else if (board) {
+      console.log(`board ${board.id} has no ${options.label}`);
+    }
 
     return (
       <div className={styles.container}>
         <div>
-          <ListItemLink>
+          {!this.state.editMode &&
+            board &&
+            board[options.label] && (
+              <ListItemLink
+                onClick={() => this.toggleEdit()}
+                className={styles.board_container}
+              >
+                <Typography
+                  variant="subheading"
+                  component="p"
+                  color="textSecondary"
+                />
+                <Button
+                  variant="flat"
+                  color="secondary"
+                  aria-label="Edit"
+                  // className={styles.button_edit}
+                >
+                  <Icon color="secondary">edit_icon</Icon>
+                </Button>
+                {!this.state.editMode &&
+                  board &&
+                  board[options.label] && <div>{board[options.label]}</div>
+                }
+              </ListItemLink>
+            )}
+          <div>
             {this.state.editMode &&
               options &&
               options.value && (
-                <div className={styles.selectContainer}>
+                <ListItemLink className={styles.selectContainer}>
                   <div>
                     <Button>set</Button>
-                    <Button>skip</Button>
+                    <Button onClick={() => this.setState({ editMode: false })}>
+                      skip
+                    </Button>
                   </div>
                   <ListItem>
                     <IntegrationReactSelect
@@ -67,27 +107,28 @@ class Boardsoptionsitem extends Component {
                       )}
                     />
                   </ListItem>
-                </div>
+                </ListItemLink>
               )}
-            {!this.state.editMode && (
-              <ListItem onClick={() => this.toggleEdit()}>
-                <Typography
-                  variant="subheading"
-                  component="p"
-                  color="textSecondary"
-                />
-                <Button
-                  variant="flat"
-                  color="secondary"
-                  aria-label="Edit"
-                  // className={styles.button_edit}
-                >
-                  <Icon color="secondary">edit_icon</Icon>
-                </Button>
-                <ListItemText>{options.label}</ListItemText>
-              </ListItem>
-            )}
-          </ListItemLink>
+            {!renderBoardOption &&
+              !this.state.editMode && (
+                <ListItemLink onClick={() => this.toggleEdit()}>
+                  <Typography
+                    variant="subheading"
+                    component="p"
+                    color="textSecondary"
+                  />
+                  <Button
+                    variant="flat"
+                    color="secondary"
+                    aria-label="Edit"
+                    // className={styles.button_edit}
+                  >
+                    <Icon color="secondary">edit_icon</Icon>
+                  </Button>
+                  <ListItemText>{options.label}</ListItemText>
+                </ListItemLink>
+              )}
+          </div>
         </div>
       </div>
     );
