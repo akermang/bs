@@ -45,18 +45,19 @@ class BoardPage extends Component {
         <Typography variant="subheading" component="p" color="textSecondary">
           This is the Surfboard for your vacation...
         </Typography>
-        <div className={styles.boardContainer}>
-          <div className={styles.boardCarousel}>
-            {selectedBoard && <SectionCarousel images={selectedBoard.images} />}
-          </div>
-          {selectedBoard && <Cards board={selectedBoard} />}
-        </div>
         <GlobalsearchComponent
           place={this.val.location}
           dates={this.val.dates}
           goSearch={this.goSearch}
           className={styles.GlobalsearchComponent}
         />
+        <div className={styles.boardContainer}>
+          <div className={styles.boardCarousel}>
+            {selectedBoard && <SectionCarousel images={selectedBoard.images} />}
+          </div>
+          {selectedBoard && <Cards board={selectedBoard} />}
+        </div>
+        
       </div>
     );
   }

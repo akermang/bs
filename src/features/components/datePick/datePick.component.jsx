@@ -62,9 +62,6 @@ class DatePickComponent extends React.Component {
       )
     };
   }
-  componentDidMount(){
-    console.log("this.props.dates:", this.props)
-  }
 
   onSelect = (value, states) => {
     this.setState({ value, states });

@@ -41,18 +41,18 @@ const DrawerComponent = ({ closeDrawer, open, currentRoute, t }) => (
         closeDrawer={closeDrawer}
       />
 
-      <DrawerLink
+      {/* <DrawerLink
         to={ROUTES.results}
         iconSrc={ImgSrc}
         label={t("SEARCH_RESULT_PAGE")}
         closeDrawer={closeDrawer}
-      />,
-      <DrawerLink
+      />, */}
+      {/* <DrawerLink
         to={ROUTES.board}
         iconSrc={ImgSrc}
         label={t("BOARD_PAGE")}
         closeDrawer={closeDrawer}
-      />
+      /> */}
       <DrawerLink
         to={ROUTES.myShareBoards}
         iconSrc={ImgSrc}
