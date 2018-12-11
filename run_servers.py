@@ -18,6 +18,6 @@ time.sleep(3)
 # server_dir = os.path.join(dir_path, "path/to/server/dir/")
 
 # command to run node server
-cmdline = "node server.js"
+cmdline = "npm run server"
 
 rc = call("start cmd /K " + cmdline, cwd=dir_path, shell=True)

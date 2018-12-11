@@ -1,6 +1,6 @@
 @import '../../../../assets/scss/variables.scss';
 
-$drawer-width: 120px;
+$drawer-width: 140px;
 $primary-icon-color: gray;
 $font-size-medium: 14px;
 $transition-rate: 0.4s;
@@ -21,7 +21,7 @@ $drawer-bg-color: rgba(232, 212, 212, 0.58);
 
   .drawer{    
     width: 100%!important;
-    height: 100%;
+    // height: 100%;
     background: $drawer-bg-color;
 
     

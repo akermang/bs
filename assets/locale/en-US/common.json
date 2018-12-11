@@ -1,10 +1,10 @@
 {
-  "HOME_PAGE": "home page",
-  "ABOUT_PAGE": "about page",
-  "SEARCH_RESULT_PAGE": "Search result page",
+  "HOME_PAGE": "home",
+  "ABOUT_PAGE": "about",
+  "SEARCH_RESULT_PAGE": "Search result",
   "BOARD_PAGE": "Board page",
-  "CREATE_BOARD_PAGE": "Create board page",
-  "MY_SHARE_BOARDS_PAGE": "My ShareBoards Page",
+  "CREATE_BOARD_PAGE": "Create board",
+  "MY_SHARE_BOARDS_PAGE": "My Boards",
   "SKIP": "Skip",
   "OK": "Ok"
 }
