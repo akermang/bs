@@ -24,10 +24,11 @@
 @media (max-width: 950px) {
   .search_panel {
     flex-direction: column;
+
     div {
-      width: 100%;
+      margin-bottom: 2px;
       input {
-        width: 92%;
+        width: 100%;
       }
     }
   }

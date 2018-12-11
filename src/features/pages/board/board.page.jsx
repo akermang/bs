@@ -17,19 +17,25 @@ class BoardPage extends Component {
   //     id: ""
   //   };
   // }
+  val = {};
+  componentWillMount() {
+    this.val = queryString.parse(this.props.location.search);
+  }
 
   componentDidMount() {
     const values = queryString.parse(this.props.location.search);
     this.props.fetchBoardById(values.boardId);
-    // this.setState({ id: values.boardId });
   }
+
+  goSearch = (history, location, dates) => {
+    history.push({
+      pathname: "/results",
+      search: `?location=${location}&dates=${dates}`
+    });
+  };
 
   render() {
     const { boards, selectedBoard } = this.props;
-    // const id = this.state.id;
-    // console.log("boards:", boards, "id:", id,  "selectedBoard:", selectedBoard);
-
-    console.log(selectedBoard);
 
     return (
       <div className={styles.container}>
@@ -41,11 +47,16 @@ class BoardPage extends Component {
         </Typography>
         <div className={styles.boardContainer}>
           <div className={styles.boardCarousel}>
-            {selectedBoard && <SectionCarousel  images = {selectedBoard.images}/>}
+            {selectedBoard && <SectionCarousel images={selectedBoard.images} />}
           </div>
           {selectedBoard && <Cards board={selectedBoard} />}
         </div>
-        <GlobalsearchComponent className={styles.GlobalsearchComponent} />
+        <GlobalsearchComponent
+          place={this.val.location}
+          dates={this.val.dates}
+          goSearch={this.goSearch}
+          className={styles.GlobalsearchComponent}
+        />
       </div>
     );
   }

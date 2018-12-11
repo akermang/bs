@@ -16,7 +16,7 @@ class LocationSearchInput extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      address: props.location || "",
+      address: props.place || "",
       isCleared: false
     };
   }
@@ -61,11 +61,12 @@ class LocationSearchInput extends React.Component {
           }) => (
             <div className={styles.location_wraper}>
               <TextField
-                autoFocus={this.state.isCleared}
+                
+                // autoFocus={this.state.isCleared}
                 label="Location"
                 InputProps={{
                   endAdornment: (
-                    <InputAdornment style={{width: "8%"}}>
+                    <InputAdornment >
                       <Icon
                         className={styles.cancelIcon}
                         onClick={this.clearLocation}

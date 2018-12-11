@@ -20,7 +20,6 @@ const style = {
 class Cards extends React.Component {
   render() {
     const { classes, board } = this.props;
-    console.log("Card Board:", board)
     return (
       <div className={styles.card}>
         <Card>

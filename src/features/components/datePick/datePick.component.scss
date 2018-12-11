@@ -6,8 +6,13 @@
     rgba(0, 0, 0, 0.14), 0px 9px 46px 8px 
     rgba(0, 0, 0, 0.12);
     max-width: 312px;
-    position: absolute!important;
+    position: fixed!important;
+    top: 0;
+    right: 0;
+    // bottom: 0;
+    left: 0;
     z-index: 1;
+    margin: 10% auto;
     background-color: #fff;
 }
 input{
@@ -20,8 +25,20 @@ input{
     font-size: 16px!important;
 }
 
+.datePick_wraper{
+    div:first-child{
+        width: 100%;
+    }
+}
+
 .datePick_wraper label,
 .date_wraper label{
     color: $text-color!important;
+}
+
+@media(max-width: 400px){
+    .datepick{
+        // max-width: 80%; 
+    }
 }
 

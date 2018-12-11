@@ -3,34 +3,59 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import styles from "./SearchResults.page.scss";
 import Cards from "../../components/card.Class/cardClass.component.jsx";
-import { FetchBoardsAction, FetchBoardsBySelectionAction } from "../../../common/state/board/board.actions";
+import { FetchBoardsBySelectionAction } from "../../../common/state/board/board.actions";
 import Typography from "@material-ui/core/Typography";
 import { translate } from "react-i18next";
 import GlobalsearchComponent from "../../components/globalSearch/globalSearch.component.jsx";
-import queryString from 'query-string'
+import queryString from "query-string";
 import { withRouter } from "react-router-dom";
-
 
 class SearchresultsPage extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+    };
   }
+  val = {}
+  componentWillMount(){
+    this.val = queryString.parse(this.props.location.search);
+  }
+
   componentDidMount() {
-    const values = queryString.parse(this.props.location.search)
-    console.log("params values:",values)
-    let selection = "gal selection"
+    const values = queryString.parse(this.props.location.search);
+    console.log("did mount params values:", values);
+    this.setState({location: values.location, dates: values.dates})
+    console.log(this.state.location)
+    let selection = values;
+    this.fetch(selection);
+  }
+
+  fetch = selection => {
     this.props.fetchBoardsBySelections(selection);
-  }
+  };
 
-  onBoardClick = (id)=> this.goToBoardPage(id)
+  onBoardClick = id => this.goToBoardPage(id);
 
-  goToBoardPage = (id) => {
+  goToBoardPage = id => {
+    const values = queryString.parse(this.props.location.search);
     this.props.history.push({
-      pathname: '/board',
-      search: `?boardId=${id}&dates=${'gal dates'}`
-    })
-  }
+      pathname: "/board",
+      search: `?boardId=${id}&location=${values.location}&dates=${values.dates}`
+    });
+  };
+
+  goSearch = (history, location, dates) => {
+    history.push({
+      // pathname: '/results',
+      search: `?location=${location}&dates=${dates}`
+    });
+    console.log("goSearch params values:", location, dates);
+    let selection = {
+      location: location,
+      dates: dates
+    };
+    this.fetch(selection);
+  };
 
   render() {
     const { boards } = this.props;
@@ -42,16 +67,20 @@ class SearchresultsPage extends Component {
         <Typography variant="subheading" component="p" color="textSecondary">
           Surfboard for your vacation.
         </Typography>
-        <GlobalsearchComponent />
+        <GlobalsearchComponent place={this.val.location} dates={this.val.dates} goSearch={this.goSearch} />
 
-        <div className={styles.boardsContainer} style={{margin: "0 auto"}}>
-          {boards && boards.map(board => (
-            <div key={board.id} id={board.id} className={styles.boardCard} onClick={()=>this.onBoardClick(board.id)}>
-              <Cards
-               board={board}
-                />
-            </div>
-          ))}
+        <div className={styles.boardsContainer} style={{ margin: "0 auto" }}>
+          {boards &&
+            boards.map(board => (
+              <div
+                key={board.id}
+                id={board.id}
+                className={styles.boardCard}
+                onClick={() => this.onBoardClick(board.id)}
+              >
+                <Cards board={board} />
+              </div>
+            ))}
         </div>
         <div>{this.props.example}</div>
       </div>
@@ -71,10 +100,11 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    fetchBoardsBySelections: (userSelection) => dispatch(new FetchBoardsBySelectionAction(userSelection))
+    fetchBoardsBySelections: userSelection =>
+      dispatch(new FetchBoardsBySelectionAction(userSelection))
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter
-  (translate()(SearchresultsPage))
+export default connect(mapStateToProps, mapDispatchToProps)(
+  withRouter(translate()(SearchresultsPage))
 );

@@ -14,13 +14,6 @@ import LocationSearchInput from "../../components/locationAutocomlete/locationAu
 import Card from "@material-ui/core/Card";
 import { withRouter } from "react-router-dom";
 
-
-const goSearch = (history) => {
-  history.push({
-    pathname: '/results',
-    search: `?location=${location}&dates=${dates}`
-  })
-}
 let  dates = ""
 const setDate = (str) => {
   dates = str
@@ -34,16 +27,16 @@ const setLocation = (str)=>{
 const GlobalsearchComponent = props => {
   return (
     <div className={styles.container}>
-      {props.example}
+      {console.log(props)}
       <Card className={styles.search_panel}>
-        <LocationSearchInput location={location} setLocation={setLocation}/>
-        <DatePickComponent  dates={dates} setDates={setDate} />
+        <LocationSearchInput place={props.place} setLocation={setLocation} dates={props.dates}/>
+        <DatePickComponent oldDates={props.dates} dates={dates} setDates={setDate} />
         <Button
           variant="fab"
           color="primary"
           aria-label="search"
           className={styles.button_search}
-          onClick={() => goSearch(props.history)}
+          onClick={() => props.goSearch(props.history, location, dates)}
         >
           <SearchIcon />
         </Button>

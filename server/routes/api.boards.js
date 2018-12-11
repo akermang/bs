@@ -3,6 +3,7 @@ const router = express.Router();
 const Sequelize = require("Sequelize");
 const db = require("../getDb.js");
 const allBoards = require("../mock/surfboards.json");
+const defaultBoard = [allBoards[0]]
 const BoardImages = require("../mock/images.json");
 const BoardsOptions = require("../mock/BoardsOptions.json");
 
@@ -26,7 +27,12 @@ router.get("/", (req, res) => {
 
 //post boards by selection
 router.post("/bySelection", (req, res) => {
-  res.status(200).send(allBoards);
+  if(req.body.userSelections.dates != "" && req.body.userSelections.location != ""){
+    res.status(200).send(allBoards);
+  }else{
+    res.status(200).send(defaultBoard);
+  }
+  
   console.log("req.body:", req.body);
   console.log("req.params:", req.params);
 });

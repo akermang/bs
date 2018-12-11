@@ -2,9 +2,11 @@
   max-width: 100%;
   margin: 0 auto;
   display: flex;
+  flex-direction: column;
+  align-items: center;
 
-  .boardImgWraper{
-      width: 17rem
+  .boardImgWraper {
+    width: 17rem;
   }
 
   .boardCard {
@@ -13,5 +15,17 @@
 
   .boardCarousel {
     width: 40%;
+    div:first-child {
+      display: flex;
+      justify-content: center;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .boardContainer {
+    .boardCarousel {
+      width: 100%;
+    }
   }
 }
