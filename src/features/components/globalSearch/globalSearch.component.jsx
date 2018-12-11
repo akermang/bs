@@ -13,24 +13,33 @@ import DatePickComponent from "../datePick/datePick.component.jsx";
 import LocationSearchInput from "../../components/locationAutocomlete/locationAutocomlete.component.jsx";
 import Card from "@material-ui/core/Card";
 import { withRouter } from "react-router-dom";
-
-let  dates = ""
-const setDate = (str) => {
-  dates = str
-}
-
-let location = "";
-const setLocation = (str)=>{
-  location = str;
-}
+import queryString from "query-string";
 
 const GlobalsearchComponent = props => {
+  const values = queryString.parse(props.location.search);
+  let dates = values.dates;
+  const setDate = str => {
+    dates = str;
+  };
+
+  let location = values.location;
+  const setLocation = str => {
+    location = str;
+  };
   return (
     <div className={styles.container}>
       {console.log(props)}
       <Card className={styles.search_panel}>
-        <LocationSearchInput place={props.place} setLocation={setLocation} dates={props.dates}/>
-        <DatePickComponent oldDates={props.dates} dates={dates} setDates={setDate} />
+        <LocationSearchInput
+          place={props.place}
+          setLocation={setLocation}
+          dates={props.dates}
+        />
+        <DatePickComponent
+          oldDates={props.dates}
+          dates={props.dates}
+          setDates={setDate}
+        />
         <Button
           variant="fab"
           color="primary"
