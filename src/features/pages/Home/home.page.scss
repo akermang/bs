@@ -37,3 +37,14 @@
     }
   }
 }
+
+@media (max-width: 560px) {
+  .homePage {
+    .globusImgWrap {
+      img {
+        height: 26vh;
+      }
+    }
+  }
+}
+

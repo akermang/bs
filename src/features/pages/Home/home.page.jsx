@@ -15,30 +15,43 @@ import {
 class HomePage extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      massage: ""
+    };
   }
-// componentDidMount(){
-//   this.props.openDialog("NO selection", <div>LOCATION / DATES</div>);
-// }
 
   goSearch = (history, location, dates) => {
-    // console.log(dispatch)
-    // console.log("this.props:", this.props);
-    // this.props.openDialog("NO selection", <div>LOCATION / DATES</div>);
-    !location ? console.log("No location selected") : null;
-    !dates ? console.log("No dates selected") : null;
-    location && dates
-      ? history.push({
-          pathname: "/results",
-          search: `?location=${location}&dates=${dates}`
-        })
-      : null;
+    if (dates) {
+      history.push({
+        search: `?dates=${dates}`
+      });
+    } else {
+      this.props.openDialog("Select Dates");
+    }
+    
+    if (location) {
+      history.push({
+        search: `?location=${location}`
+      });
+    } else {
+      this.props.openDialog("Select Location");
+    }
+
+    if (location && dates) {
+      history.push({
+        search: `?location=${location}&dates=${dates}`
+      });
+      history.push({
+        pathname: "/results",
+        search: `?location=${location}&dates=${dates}`
+      });
+    }
   };
   render() {
     return (
       <div className={styles.homePage}>
         <Typography variant="display1" component="h3">
-          BoardShare - {this.props.t("HOME_PAGE")}
+          BoardShare
         </Typography>
         <Typography variant="subheading" component="p" color="textSecondary">
           {this.props.t("FIND A SURFBOARD FOR YOUER VACATION")}
@@ -47,6 +60,7 @@ class HomePage extends Component {
           goSearch={this.goSearch}
           className={styles.GlobalsearchComponent}
         />
+        <div>{this.state.massage}</div>
         <div className={styles.globusImgWrap}>
           <img src={globus} alt="" />
         </div>
@@ -60,11 +74,21 @@ class HomePage extends Component {
 //   t: propTypes.func.isRequired
 // };
 
+function mapStateToProps(state) {
+  return {
+    boards: state.board.boards,
+    selectedBoard: state.board.selectedBoard
+  };
+}
+
 function mapDispatchToProps(dispatch) {
   return {
-    openDialog: (title, component, type, handler) => dispatch(new OpenDialogAction(title, component, type, handler)),
+    openDialog: (title, component, type, handler) =>
+      dispatch(new OpenDialogAction(title, component, type, handler)),
     closeDialog: () => dispatch(new CloseDialogAction())
   };
 }
 
-export default connect(mapDispatchToProps)(translate()(HomePage));
+export default connect(mapStateToProps, mapDispatchToProps)(
+  translate()(HomePage)
+);

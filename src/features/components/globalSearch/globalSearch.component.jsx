@@ -26,18 +26,21 @@ const GlobalsearchComponent = props => {
   const setLocation = str => {
     location = str;
   };
+
+  const goSearch = (location, dates)=>{
+    props.goSearch(props.history, location, dates);
+  }
   return (
     <div className={styles.container}>
-      {console.log(props)}
       <Card className={styles.search_panel}>
         <LocationSearchInput
-          place={props.place}
+          place={location}
           setLocation={setLocation}
-          dates={props.dates}
+          dates={dates}
         />
         <DatePickComponent
-          oldDates={props.dates}
-          dates={props.dates}
+          oldDates={dates}
+          dates={dates}
           setDates={setDate}
         />
         <Button
@@ -45,7 +48,7 @@ const GlobalsearchComponent = props => {
           color="primary"
           aria-label="search"
           className={styles.button_search}
-          onClick={() => props.goSearch(props.history, location, dates)}
+          onClick={() => goSearch(location, dates)}
         >
           <SearchIcon />
         </Button>

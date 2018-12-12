@@ -28,10 +28,10 @@ const DialogComponent = ({
 
     <DialogContent className={styles.content}>{component}</DialogContent>
     <DialogActions>
-      <Button onClick={() => closeDialog()} color="primary">
+      {/* <Button onClick={() => closeDialog()} color="primary">
         {t("SKIP")}
-      </Button>
-      <Button onClick={() => callBack} color="primary">
+      </Button> */}
+      <Button onClick={() =>  closeDialog()} color="primary">
         {t("OK")}
       </Button>
     </DialogActions>
