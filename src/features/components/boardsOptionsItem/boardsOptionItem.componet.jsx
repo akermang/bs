@@ -71,15 +71,17 @@ class Boardsoptionsitem extends Component {
                 </Button>
                 {!this.state.editMode &&
                   board &&
-                  board[options.label] && <div>{board[options.label]}</div>
-                }
+                  board[options.label] && <div>{board[options.label]}</div>}
               </ListItemLink>
             )}
           <div>
             {this.state.editMode &&
               options &&
               options.value && (
-                <ListItemLink className={styles.selectContainer}>
+                <ListItemLink
+                  className={styles.selectContainer}
+                  onBlur={() => this.setState({ editMode: false })}
+                >
                   <div>
                     <Button>set</Button>
                     <Button onClick={() => this.setState({ editMode: false })}>

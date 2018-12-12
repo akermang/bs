@@ -54,7 +54,7 @@ class HomePage extends Component {
           BoardShare
         </Typography>
         <Typography variant="subheading" component="p" color="textSecondary">
-          {this.props.t("FIND A SURFBOARD FOR YOUER VACATION")}
+          {this.props.t("FIND A SURFBOARD FOR YOUR VACATION")}
         </Typography>
         <GlobalsearchComponent
           goSearch={this.goSearch}
