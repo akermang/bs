@@ -5,6 +5,7 @@
   justify-content: space-evenly;
   padding: 7px;
   margin-top: 5px;
+
   .LocationSearchInput,
   .DatePick {
     padding: 7px;
@@ -24,6 +25,7 @@
 @media (max-width: 950px) {
   .search_panel {
     flex-direction: column;
+    box-shadow: none !important;
 
     div {
       margin-bottom: 2px;

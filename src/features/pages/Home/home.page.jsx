@@ -17,6 +17,9 @@ class HomePage extends Component {
     super(props);
     this.state = {};
   }
+// componentDidMount(){
+//   this.props.openDialog("NO selection", <div>LOCATION / DATES</div>);
+// }
 
   goSearch = (history, location, dates) => {
     // console.log(dispatch)
@@ -59,8 +62,7 @@ class HomePage extends Component {
 
 function mapDispatchToProps(dispatch) {
   return {
-    openDialog: (title, component, type, handler) =>
-      dispatch(new OpenDialogAction(title, component, type, handler)),
+    openDialog: (title, component, type, handler) => dispatch(new OpenDialogAction(title, component, type, handler)),
     closeDialog: () => dispatch(new CloseDialogAction())
   };
 }
