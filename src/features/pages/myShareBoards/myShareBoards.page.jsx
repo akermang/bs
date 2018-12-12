@@ -63,15 +63,16 @@ class MyshareboardsPage extends Component {
           aria-label="Add"
           className={styles.button_edit}
           onClick={() =>
-            this.props
-              .fetchNewBoard({
-                name: this.state.inputValue,
-                userId: this.props.user.userId
-              })
-              .then(res => {
-                this.editBoard(res);
-                this.props.closeDialog();
-              })
+            this.state.inputValue != "" ?
+              this.props
+                .fetchNewBoard({
+                  name: this.state.inputValue,
+                  userId: this.props.user.userId
+                })
+                .then(res => {
+                  this.editBoard(res);
+                  this.props.closeDialog();
+                }) : null
           }
         >
           <Icon>add_icon</Icon>
@@ -90,22 +91,22 @@ class MyshareboardsPage extends Component {
         <Typography variant="subheading" component="p" color="textSecondary">
           Add and Edit Your Surfboards
         </Typography>
-
+        <Button
+          variant="fab"
+          color="primary"
+          aria-label="Add"
+          className={styles.button_edit_addBoard}
+          onClick={() => this.addBoard()}
+        >
+          <Icon>add_icon</Icon>
+        </Button>
         <div className={styles.boardsContainer}>
           <ListcompComponent
             clickCallBack={e => this.onBoardClick(e)}
             boards={userBoards}
           />
         </div>
-        <Button
-          variant="fab"
-          color="primary"
-          aria-label="Add"
-          className={styles.button_edit}
-          onClick={() => this.addBoard()}
-        >
-          <Icon>add_icon</Icon>
-        </Button>
+
       </div>
     );
   }

@@ -61,11 +61,11 @@ class SearchresultsPage extends Component {
     const { boards } = this.props;
     return (
       <div className={styles.container}>
-        <Typography variant="display1" component="h3">
+        {/* <Typography variant="display1" component="h3">
           {this.props.t("SEARCH_RESULT_PAGE")}
-        </Typography>
+        </Typography> */}
         <Typography variant="subheading" component="p" color="textSecondary">
-          Surfboard for your vacation.
+         Pick yuorself a Surfboard
         </Typography>
         <GlobalsearchComponent place={this.val.location} dates={this.val.dates} goSearch={this.goSearch} />
 

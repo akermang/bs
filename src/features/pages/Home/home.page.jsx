@@ -50,9 +50,9 @@ class HomePage extends Component {
   render() {
     return (
       <div className={styles.homePage}>
-        <Typography variant="display1" component="h3">
+        {/* <Typography variant="display1" component="h3">
           BoardShare
-        </Typography>
+        </Typography> */}
         <Typography variant="subheading" component="p" color="textSecondary">
           {this.props.t("FIND A SURFBOARD FOR YOUR VACATION")}
         </Typography>

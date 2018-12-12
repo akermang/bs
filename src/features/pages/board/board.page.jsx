@@ -39,25 +39,28 @@ class BoardPage extends Component {
 
     return (
       <div className={styles.container}>
-        <Typography variant="display1" component="h3">
+        {/* <Typography variant="display1" component="h3">
           {this.props.t("BOARD_PAGE")}
-        </Typography>
+        </Typography> */}
         <Typography variant="subheading" component="p" color="textSecondary">
           This is the Surfboard for your vacation...
         </Typography>
-        <GlobalsearchComponent
-          place={this.val.location}
-          dates={this.val.dates}
-          goSearch={this.goSearch}
-          className={styles.GlobalsearchComponent}
-        />
-        <div className={styles.boardContainer}>
-          <div className={styles.boardCarousel}>
-            {selectedBoard && <SectionCarousel images={selectedBoard.images} />}
+        <div className={styles.boardWraper}>
+          <GlobalsearchComponent
+            place={this.val.location}
+            dates={this.val.dates}
+            goSearch={this.goSearch}
+            className={styles.GlobalsearchComponent}
+          />
+          <div className={styles.boardContainer}>
+            <div className={styles.boardCarousel}>
+              {selectedBoard && <SectionCarousel images={selectedBoard.images} />}
+            </div>
+            {selectedBoard && <Cards board={selectedBoard} />}
           </div>
-          {selectedBoard && <Cards board={selectedBoard} />}
         </div>
-        
+
+
       </div>
     );
   }

@@ -32,7 +32,8 @@ const DialogComponent = ({
         {t("SKIP")}
       </Button> */}
       <Button onClick={() =>  closeDialog()} color="primary">
-        {t("OK")}
+        {/* {t("OK")} */}
+        cencel
       </Button>
     </DialogActions>
   </Dialog>
