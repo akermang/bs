@@ -63,3 +63,7 @@ body{
 th, td{
 	vertical-align: middle;
 }
+
+img{
+	-webkit-user-drag: none;
+}

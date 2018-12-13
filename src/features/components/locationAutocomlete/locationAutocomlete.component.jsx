@@ -44,6 +44,7 @@ class LocationSearchInput extends React.Component {
   clearLocation = () => {
     this.setState({ address: "" });
     this.setState({ isCleared: true });
+    this.input.focus();
   };
   render() {
     return (
@@ -61,7 +62,7 @@ class LocationSearchInput extends React.Component {
           }) => (
             <div className={styles.location_wraper}>
               <TextField
-                
+                inputRef = {el => this.input = el} 
                 // autoFocus={this.state.isCleared}
                 label="Location"
                 InputProps={{
