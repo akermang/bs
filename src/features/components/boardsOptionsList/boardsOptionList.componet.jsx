@@ -52,32 +52,6 @@ const Boardsoptionslist = props => {
         </div>
 
         <div className={styles.options_wraper}>
-          {/* {!boardImages && (
-            <div>
-              <input
-                accept="image/*"
-                // className={classes.input}
-                style={{ display: "none" }}
-                id="raised-button-file"
-                multiple
-                type="file"
-              />
-              <label htmlFor="raised-button-file">
-                <ListItemLink>
-                  <Button
-                    variant="flat"
-                    color="secondary"
-                    component="span"
-                    // className={classes.button}
-                  >
-                    <Icon>add_icon</Icon>
-                  </Button>
-                  <ListItemText> Images</ListItemText>
-                </ListItemLink>
-              </label>
-            </div>
-          )} */}
-
           {optionsArry &&
             optionsArry.map((option, index) => (
               <Boardsoptionsitem key={index} options={option} board={board} />

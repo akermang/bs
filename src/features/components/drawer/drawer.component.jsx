@@ -66,7 +66,7 @@ const DrawerComponent = ({ closeDrawer, open, currentRoute, t }) => (
 const DrawerLink = ({ closeDrawer, iconSrc, label, to }) => (
   <NavLink activeClassName={styles.active} to={to}>
     <MenuItem onClick={() => closeDrawer()}>
-      <img className={styles.icon} src={iconSrc} alt={`${label} link`} />
+      {/* <img className={styles.icon} src={iconSrc} alt={`${label} link`} /> */}
       <span>{label}</span>
     </MenuItem>
   </NavLink>
@@ -74,7 +74,7 @@ const DrawerLink = ({ closeDrawer, iconSrc, label, to }) => (
 
 DrawerLink.propTypes = {
   to: PropTypes.string.isRequired,
-  iconSrc: PropTypes.string.isRequired,
+  // iconSrc: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   closeDrawer: PropTypes.func.isRequired
 };
