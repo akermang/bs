@@ -54,13 +54,15 @@ class BoardPage extends Component {
           />
           <div className={styles.boardContainer}>
             <div className={styles.boardCarousel}>
-              {selectedBoard && <SectionCarousel images={selectedBoard.images} />}
+              {selectedBoard && (
+                <SectionCarousel images={selectedBoard.images} />
+              )}
             </div>
-            {selectedBoard && <Cards board={selectedBoard} />}
+            <div className={styles.board_card}>
+              {selectedBoard && <Cards board={selectedBoard} />}
+            </div>
           </div>
         </div>
-
-
       </div>
     );
   }

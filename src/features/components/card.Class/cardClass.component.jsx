@@ -33,7 +33,7 @@ class Cards extends React.Component {
             alt="Card-img-cap"
           />}
           <CardBody>
-            <p>ID: {board.id}</p>
+            {/* <p>ID: {board.id}</p> */}
             <h4 className={classes.cardTitle} style={{ color: "#a73a9d"}}>{board.brand || "Al Meric"}</h4>
             <p>TYPE: {board.type}</p>
             <p>MODEL: {board.model}</p>

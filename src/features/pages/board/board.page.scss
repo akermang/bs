@@ -2,22 +2,33 @@
   max-width: 100%;
   margin: 0 auto;
   display: flex;
-  flex-direction: column;
-  align-items: center;
 
-  .boardImgWraper {
-    width: 17rem;
-  }
+  
 
-  .boardCard {
-    width: 30%;
+  .board_card {
+    width: 40%;
   }
 
   .boardCarousel {
-    width: 40%;
+    width: 50%;
     div:first-child {
       display: flex;
       justify-content: center;
+    }
+  }
+}
+
+@media(max-width:950px){
+  .boardContainer{
+    flex-direction: column;
+    .boardCarousel {
+      width: 100%;
+    }
+    .board_card {
+      width: 100%;
+      > div {
+        width: 100%;
+      }
     }
   }
 }
