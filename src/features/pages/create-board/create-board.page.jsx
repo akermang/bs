@@ -43,6 +43,7 @@ class CreateBoardPage extends Component {
       }));
     });
   }
+  
   togglePriceEdit() {
     let val = !this.state.editPrice;
     this.setState({ editPrice: val });
@@ -51,9 +52,8 @@ class CreateBoardPage extends Component {
   render() {
     const { boards, options, openDialog, editBoard } = this.props;
     const board = this.state.board;
-    let dates = "12345";
-   
-    let place = "baord.location"
+    let place = "board.location" // temp gal
+
     const setPlace = str => {
       place = str;
     };
@@ -82,7 +82,6 @@ class CreateBoardPage extends Component {
             <LocationSearchInput
               place={place}
               setLocation={setPlace}
-              dates={dates}
             />
           </div>
         ) : (

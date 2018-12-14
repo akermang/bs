@@ -51,7 +51,7 @@ class InputPriceComponent extends Component {
       <div className={styles.container}>
         <div>
           {!this.state.inputFocus && <Icon onClick={()=>this.iconClick(name)} color="secondary">edit_icon</Icon>}
-          {this.state.inputFocus && <Icon color="secondary">save</Icon>}
+          {this.state.inputFocus && <span><Icon color="secondary">save</Icon>  <Icon color="secondary">cancel</Icon></span>}
           <span>
             {" "}
             {label} {currency}
