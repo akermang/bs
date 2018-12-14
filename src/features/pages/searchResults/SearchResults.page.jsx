@@ -65,7 +65,7 @@ class SearchresultsPage extends Component {
           {this.props.t("SEARCH_RESULT_PAGE")}
         </Typography> */}
         <Typography variant="subheading" component="p" color="textSecondary">
-         Pick yuorself a Surfboard
+         Pick yourself a Surfboard
         </Typography>
         <GlobalsearchComponent place={this.val.location} dates={this.val.dates} goSearch={this.goSearch} />
 
