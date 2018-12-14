@@ -20,11 +20,16 @@ import {
 } from "../../../common/state/board/board.actions";
 import Typography from "@material-ui/core/Typography";
 import { translate } from "react-i18next";
+import BoardPriceFormComponent from "../../components/board-price-form/board-price-form.component.jsx";
+import LocationSearchInput from "../../components/locationAutocomlete/locationAutocomlete.component.jsx";
 
 class CreateBoardPage extends Component {
   constructor(props) {
     super(props);
-    this.state = { board: null };
+    this.state = {
+      board: null,
+      editPrice: false
+    };
   }
   componentDidMount() {
     const values = queryString.parse(this.props.location.search);
@@ -38,10 +43,20 @@ class CreateBoardPage extends Component {
       }));
     });
   }
+  togglePriceEdit() {
+    let val = !this.state.editPrice;
+    this.setState({ editPrice: val });
+  }
 
   render() {
     const { boards, options, openDialog, editBoard } = this.props;
     const board = this.state.board;
+    let dates = "12345";
+   
+    let place = "baord.location"
+    const setPlace = str => {
+      place = str;
+    };
 
     function ListItemLink(props) {
       return <ListItem button component="a" {...props} />;
@@ -49,13 +64,34 @@ class CreateBoardPage extends Component {
 
     return (
       <div className={styles.container + " createBoardPage"}>
-        <Typography variant="display1" component="h3">
-          {this.props.t("CREATE_BOARD_PAGE")}
-        </Typography>
-        <Typography variant="subheading" component="h4" color="textSecondary">
-          {board && board.name ? `Edit ${board.name} detailes` : "NO BOARD"}
-        </Typography>
-        <Boardsoptionslist options={options} board={board} openDialog={openDialog} />
+        <div className={styles.title_wrap}>
+          <Typography variant="display1" component="h3">
+            {board && board.name
+              ? `${board.name}`
+              : this.props.t("CREATE_BOARD_PAGE")}
+          </Typography>
+          <Typography variant="subheading" component="h4" color="textSecondary">
+            {board && board.name ? `Edit ${board.name} detailes` : "NO BOARD"}
+          </Typography>
+        </div>
+        <Button onClick={() => this.togglePriceEdit()}>details images / prices location</Button>
+
+        {this.state.editPrice ? (
+          <div className={styles.prices_wraper}>
+            <BoardPriceFormComponent />
+            <LocationSearchInput
+              place={place}
+              setLocation={setPlace}
+              dates={dates}
+            />
+          </div>
+        ) : (
+          <Boardsoptionslist
+            options={options}
+            board={board}
+            openDialog={openDialog}
+          />
+        )}
       </div>
     );
   }

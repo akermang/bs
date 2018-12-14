@@ -1,8 +1,13 @@
-.container.createBoardPage{
-    
-}
 .IntegrationReactSelect-root-88 {
-    height: 100%!important;
-    flex-grow: 1;
+  height: 100% !important;
+  flex-grow: 1;
 }
-
+.prices_wraper{
+    width: 100%;
+    display: flex;
+}
+@media(max-width: 950px){
+  .prices_wraper{
+    flex-direction: column;
+}
+}
