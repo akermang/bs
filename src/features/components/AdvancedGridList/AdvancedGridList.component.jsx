@@ -37,7 +37,7 @@ function AdvancedGridList(props) {
 
   return (
     <div className={classes.root}>
-      <GridList cellHeight={200} spacing={1} className={classes.gridList}>
+      <GridList cellHeight={200} spacing={0} className={classes.gridList}>
         {board.images.map((tile, i) => (
           <GridListTile key={board.name+i} cols={i == 0 ? 2 : 1} rows={tile.featured ? 2 : 1}>
             <img  src={tile} alt="{tile.title}" />
