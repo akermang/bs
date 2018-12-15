@@ -15,7 +15,7 @@ const styles = theme => ({
   textField: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
-    width: 70
+    width: 50
   }
 });
 
@@ -51,7 +51,7 @@ class InputPriceComponent extends Component {
       <div className={styles.container}>
         <div>
           {!this.state.inputFocus && <Icon onClick={()=>this.iconClick(name)} color="secondary">edit_icon</Icon>}
-          {this.state.inputFocus && <span><Icon color="secondary">save</Icon>  <Icon color="secondary">cancel</Icon></span>}
+          {this.state.inputFocus && <Icon color="secondary">save</Icon>}
           <span>
             {" "}
             {label} {currency}

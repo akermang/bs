@@ -74,7 +74,7 @@ class CreateBoardPage extends Component {
             {board && board.name ? `Edit ${board.name} detailes` : "NO BOARD"}
           </Typography>
         </div>
-        <Button onClick={() => this.togglePriceEdit()}>details images / prices location</Button>
+        <Button onClick={() => this.togglePriceEdit()}>details images / prices and location</Button>
 
         {this.state.editPrice ? (
           <div className={styles.prices_wraper}>
