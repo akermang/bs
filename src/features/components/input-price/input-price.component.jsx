@@ -1,13 +1,15 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-// import styles from './input-price.component.scss';
+import styles from "./input-price.component.scss";
 import { withStyles } from "@material-ui/core/styles";
 import MenuItem from "@material-ui/core/MenuItem";
 import TextField from "@material-ui/core/TextField";
 import Icon from "@material-ui/core/Icon";
+import Button from "@material-ui/core/Button";
+import Card from "@material-ui/core/Card"
 
-const styles = theme => ({
+const MuiStyles = theme => ({
   container: {
     display: "flex",
     flexWrap: "wrap"
@@ -42,42 +44,45 @@ class InputPriceComponent extends Component {
 
   iconClick(name) {
     this.inputFocusToggle();
-    this[name].focus();
+    // this[name].focus();
   }
 
   render() {
     const { classes, name, label, currency } = this.props;
     return (
-      <div className={styles.container}>
-        <div>
-          {!this.state.inputFocus && (
-            <Icon onClick={() => this.iconClick(name)} color="secondary">
-              edit_icon
-            </Icon>
-          )}
+      <div className={styles.container} onClick={() => this.iconClick(name)}>
+          {!this.state.inputFocus && <Icon color="secondary">edit_icon</Icon>}
           {this.state.inputFocus && (
-            <span>
-              <Icon color="secondary">save</Icon>{" "}
-              <Icon color="secondary">cancel</Icon>
+            <span className={styles.icons_wraper}>
+              {/* <div> */}
+                <Button color="secondary">save</Button>
+                <Button color="primary">cancel</Button>
+              {/* </div> */}
+              {/* <div><Icon color="secondary">cancel</Icon></div> */}
             </span>
           )}
           <span>
             {" "}
-            {label} {currency}
+            {label} 
           </span>
-          <TextField
-            inputRef={el => (this[name] = el)}
-            onFocus={() => this.inputFocusToggle(name)}
-            onBlur={() => this.inputFocusToggle(name)}
-            className={classes.textField}
-            InputProps={{}}
-            type="number"
-            value={this.state.price}
-            onChange={this.handleChange("price")}
-            style={{ margin: 8 }}
-            margin="normal"
-          />
-        </div>
+          <div>{currency}</div>
+          {!this.state.inputFocus && <span>{this.state.price}</span>}
+          {this.state.inputFocus && (
+            <TextField
+              autoFocus
+              inputRef={el => (this[name] = el)}
+              // onFocus={() => this.inputFocusToggle(name)}
+              // onBlur={() => this.inputFocusToggle(name)}
+              className={classes.textField}
+              InputProps={{}}
+              type="number"
+              value={this.state.price}
+              onChange={this.handleChange("price")}
+              style={{ margin: 8 }}
+              margin="normal"
+            />
+          )}
+        
       </div>
     );
   }
@@ -87,4 +92,4 @@ class InputPriceComponent extends Component {
 //   example: PropTypes.string.isRequired
 // };
 
-export default withStyles(styles)(InputPriceComponent);
+export default withStyles(MuiStyles)(InputPriceComponent);

@@ -13,7 +13,8 @@ import InputPriceComponent from "../input-price/input-price.component.jsx";
 const styles = theme => ({
   container: {
     display: "flex",
-    flexWrap: "wrap"
+    flexWrap: "wrap",
+    flexDirection: "column"
   },
   textField: {
     marginLeft: theme.spacing.unit,
@@ -50,19 +51,19 @@ const currencies = [
 const priceList = [
   {
     name: "halfDayPrice",
-    label: " 1/2 day price "
+    label: " 1/2 day  "
   },
   {
     name: "oneDayPrice",
-    label: "1 day price"
+    label: "1 day "
   },
   {
     name: "threeDaysPrice",
-    label: "3 days price"
+    label: "3 days "
   },
   {
     name: "weekPrice",
-    label: "week price"
+    label: "week "
   },
   {
     name: "boardValue",
@@ -87,7 +88,7 @@ class BoardPriceFormComponent extends React.Component {
     return (
       <form className={classes.container} noValidate autoComplete="off">
         <div className={styles.price_input_wraper}>
-          <div>
+          {/* <div> */}
             {/* <Icon color="secondary">edit_icon</Icon> */}
             <span> currency</span>
             <TextField
@@ -123,7 +124,7 @@ class BoardPriceFormComponent extends React.Component {
                 );
               })}
           </div>
-        </div>
+        {/* </div> */}
       </form>
     );
   }
