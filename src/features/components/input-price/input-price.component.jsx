@@ -41,7 +41,7 @@ class InputPriceComponent extends Component {
   }
 
   iconClick(name) {
-    this.inputFocusToggle()
+    this.inputFocusToggle();
     this[name].focus();
   }
 
@@ -50,14 +50,23 @@ class InputPriceComponent extends Component {
     return (
       <div className={styles.container}>
         <div>
-          {!this.state.inputFocus && <Icon onClick={()=>this.iconClick(name)} color="secondary">edit_icon</Icon>}
-          {this.state.inputFocus && <Icon color="secondary">save</Icon>}
+          {!this.state.inputFocus && (
+            <Icon onClick={() => this.iconClick(name)} color="secondary">
+              edit_icon
+            </Icon>
+          )}
+          {this.state.inputFocus && (
+            <span>
+              <Icon color="secondary">save</Icon>{" "}
+              <Icon color="secondary">cancel</Icon>
+            </span>
+          )}
           <span>
             {" "}
             {label} {currency}
           </span>
           <TextField
-            inputRef={el =>this[name] = el}
+            inputRef={el => (this[name] = el)}
             onFocus={() => this.inputFocusToggle(name)}
             onBlur={() => this.inputFocusToggle(name)}
             className={classes.textField}
