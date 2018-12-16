@@ -1,6 +1,6 @@
 import React from "react";
 import DateRangePicker from "react-daterange-picker";
-import "react-daterange-picker/dist/css/react-calendar.css";
+import "../../../../assets/scss/react-calendar.css";
 import originalMoment from "moment";
 import { extendMoment } from "moment-range";
 import styles from "./datePick.component.scss";
