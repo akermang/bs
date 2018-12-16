@@ -16,6 +16,9 @@ const styles = theme => ({
     flexWrap: "wrap",
     flexDirection: "column"
   },
+  price_input_wraper: {
+    margin: "0 auto"
+  },
   textField: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
@@ -87,43 +90,48 @@ class BoardPriceFormComponent extends React.Component {
 
     return (
       <form className={classes.container} noValidate autoComplete="off">
-        <div className={styles.price_input_wraper}>
+        <div className={classes.price_input_wraper}>
           {/* <div> */}
-            {/* <Icon color="secondary">edit_icon</Icon> */}
-            <span> currency</span>
-            <TextField
-              select
-              className={classes.textField}
-              value={this.state.currency}
-              onChange={this.handleChange("currency")}
-              SelectProps={{
-                MenuProps: {
-                  className: classes.menu
-                }
-              }}
-              margin="normal"
-            >
-              {currencies.map(option => (
-                <MenuItem key={option.value} value={option.value}>
-                  {option.label}
-                </MenuItem>
-              ))}
-            </TextField>
-          </div>
+          {/* <Icon color="secondary">edit_icon</Icon> */}
+          <span> currency</span>
+          <TextField
+            select
+            className={classes.textField}
+            value={this.state.currency}
+            onChange={this.handleChange("currency")}
+            SelectProps={{
+              MenuProps: {
+                className: classes.menu
+              }
+            }}
+            margin="normal"
+          >
+            {currencies.map(option => (
+              <MenuItem key={option.value} value={option.value}>
+                {option.label}
+              </MenuItem>
+            ))}
+          </TextField>
+        </div>
 
-          <div className={styles.input_list_wraper}>
-            {priceList &&
-              priceList.map(option => {
-                let name = option.name;
-                let label = option.label; 
-                let currency = this.state.currency;
-                return (
-                  <div key={option.name}>
-                  <InputPriceComponent name={name} label={label} currency={currency} price={111}/>
-                  </div>
-                );
-              })}
-          </div>
+        <div className={styles.input_list_wraper}>
+          {priceList &&
+            priceList.map(option => {
+              let name = option.name;
+              let label = option.label;
+              let currency = this.state.currency;
+              return (
+                <div key={option.name}>
+                  <InputPriceComponent
+                    name={name}
+                    label={label}
+                    currency={currency}
+                    price={111}
+                  />
+                </div>
+              );
+            })}
+        </div>
         {/* </div> */}
       </form>
     );

@@ -43,7 +43,7 @@ class CreateBoardPage extends Component {
       }));
     });
   }
-  
+
   togglePriceEdit() {
     let val = !this.state.editPrice;
     this.setState({ editPrice: val });
@@ -52,7 +52,7 @@ class CreateBoardPage extends Component {
   render() {
     const { boards, options, openDialog, editBoard } = this.props;
     const board = this.state.board;
-    let place = "board.location" // temp gal
+    let place = "board.location"; // temp gal
 
     const setPlace = str => {
       place = str;
@@ -74,16 +74,19 @@ class CreateBoardPage extends Component {
             {board && board.name ? `Edit ${board.name} detailes` : "NO BOARD"}
           </Typography>
         </div>
-        <Button onClick={() => this.togglePriceEdit()}>details images / prices and location</Button>
+        <Button onClick={() => this.togglePriceEdit()}>
+          details images / prices and location
+        </Button>
 
         {this.state.editPrice ? (
-          <div className={styles.prices_wraper}>
-            <BoardPriceFormComponent />
-            <LocationSearchInput
-              place={place}
-              setLocation={setPlace}
-            />
-          </div>
+          <Card>
+            <div className={styles.prices_wraper}>
+              <BoardPriceFormComponent />
+              <div className={styles.location_wraper}>
+              <LocationSearchInput place={place} setLocation={setPlace} />
+              </div>
+            </div>
+          </Card>
         ) : (
           <Boardsoptionslist
             options={options}
