@@ -19,11 +19,11 @@ const style = {
 
 class Cards extends React.Component {
   render() {
-    const { classes, board } = this.props;
+    const { classes, board, dontShowImage } = this.props;
     return (
       <div className={styles.card}>
         <Card>
-       { board.images && <img
+       { !dontShowImage && board.images && <img
             style={{ height: "180px", width: "100%", maxWidth:"330px", display: "block" }}
             className={classes.imgCardTop}
             src={

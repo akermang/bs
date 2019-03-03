@@ -59,7 +59,7 @@ class BoardPage extends Component {
               )}
             </div>
             <div className={styles.board_card}>
-              {selectedBoard && <Cards board={selectedBoard} />}
+              {selectedBoard && <Cards board={selectedBoard} dontShowImage={true} />}
             </div>
           </div>
         </div>
