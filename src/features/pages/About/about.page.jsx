@@ -14,9 +14,10 @@ const AboutPage = () => (
     <Typography variant="subheading" component="p" color="textSecondary">
       Surfboard for your vacation.
     </Typography>
-    “Members were asking for more surfboards, more locations, the ability to
+    <p> “Members were asking for more surfboards, more locations, the ability to
     book multiple surfboards for longer than 5 days, and for the flexibility to
-    only pay for the days they used the boards.
+    only pay for the days they used the boards.</p>
+   
     {/* <IntegrationReactSelect /> */}
     <img className={styles.aboutImg} src={image1} alt="" />
     <img className={styles.aboutImg} src={image2} alt="" />

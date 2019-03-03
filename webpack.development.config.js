@@ -17,7 +17,14 @@ const config = {
 
   devServer: {
     hot: true,
-    publicPath: '/'
+    publicPath: '/',
+    proxy: {
+      '/': {
+        target: 'http://localhost:3000',
+        secure: false,
+        changeOrigin: true
+      }
+    }
   },
 
   module: {
@@ -75,9 +82,6 @@ const config = {
       filename: 'index.html',
       favicon: resolve(__dirname, 'assets/img/favicon.png'),
       inject: 'body'
-    }),
-    new webpack.DefinePlugin({
-      API_HOST: JSON.stringify('http://localhost:3000')
     })
   ]
 };

@@ -1,4 +1,11 @@
 .aboutImg {
   margin: 0 20px;
-  width: 43%;
+  width: 42%;
+}
+
+@media(max-width: 580px) {
+  .aboutImg {
+    width: 80%;
+    margin: 4px 10%;
+  }
 }

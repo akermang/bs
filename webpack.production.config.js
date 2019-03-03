@@ -36,9 +36,6 @@ const config = {
       beautify: false
     }),
     new webpack.DefinePlugin({ 'process.env': { NODE_ENV: JSON.stringify('production') } }),
-    new webpack.DefinePlugin({
-      API_HOST: JSON.stringify('')
-    }),
     new ExtractTextPlugin({ filename: './styles/style.css', disable: false, allChunks: true })
   ],
 

@@ -69,7 +69,7 @@ class SearchresultsPage extends Component {
         </Typography>
         <GlobalsearchComponent place={this.val.location} dates={this.val.dates} goSearch={this.goSearch} />
 
-        <div className={styles.boardsContainer} style={{ margin: "0 auto" }}>
+        <div className={styles.boardsContainer}>
           {boards &&
             boards.map(board => (
               <div

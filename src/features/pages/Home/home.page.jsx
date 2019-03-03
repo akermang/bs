@@ -53,8 +53,8 @@ class HomePage extends Component {
         {/* <Typography variant="display1" component="h3">
           BoardShare
         </Typography> */}
-        <Typography variant="subheading" component="p" color="textSecondary">
-          {this.props.t("FIND A SURFBOARD FOR YOUR VACATION")}
+        <Typography variant="display1" component="h3">
+          {this.props.t("SURFBOARD FOR YOUR VACATION")}
         </Typography>
         <GlobalsearchComponent
           goSearch={this.goSearch}

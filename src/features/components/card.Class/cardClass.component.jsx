@@ -24,7 +24,7 @@ class Cards extends React.Component {
       <div className={styles.card}>
         <Card>
        { board.images && <img
-            style={{ height: "180px", width: "100%", display: "block" }}
+            style={{ height: "180px", width: "100%", maxWidth:"330px", display: "block" }}
             className={classes.imgCardTop}
             src={
               board.images[0] ||
