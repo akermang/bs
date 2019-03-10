@@ -63,7 +63,7 @@ class CreateBoardPage extends Component {
     }
 
     return (
-      <div className={styles.container + " createBoardPage"}>
+      <div className={styles.container }>
         <div className={styles.title_wrap}>
           <Typography variant="display1" component="h3">
             {board && board.name

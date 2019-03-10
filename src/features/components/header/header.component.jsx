@@ -6,7 +6,7 @@ import styles from './header.component.scss';
 
 const HeaderComponent = ({ openDrawer }) => (
   <div>
-    <AppBar position="static" className={styles.header}>
+    <AppBar position="fixed" className={styles.header}>
       <Toolbar>
         <IconButton onClick={() => openDrawer()}>
           <Icon className={styles.hamburgerBtn}>menu</Icon>

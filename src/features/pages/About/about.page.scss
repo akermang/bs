@@ -1,11 +1,15 @@
+.container {
+    margin-top: 31px;
+}
+
 .aboutImg {
-  margin: 0 20px;
-  width: 42%;
+    margin: 0 20px;
+    width: 42%;
 }
 
 @media(max-width: 580px) {
-  .aboutImg {
-    width: 80%;
-    margin: 4px 10%;
-  }
+    .aboutImg {
+        width: 80%;
+        margin: 4px 10%;
+    }
 }

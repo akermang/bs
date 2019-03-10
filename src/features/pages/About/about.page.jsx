@@ -7,7 +7,7 @@ import image2 from "../../../../assets/img/bg8.jpg";
 
 
 const AboutPage = () => (
-  <div>
+  <div className={styles.container}>
     <Typography variant="display1" component="h3">
       BoardShare - About Page
     </Typography>
