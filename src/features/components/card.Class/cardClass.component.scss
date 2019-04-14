@@ -1,31 +1,29 @@
 .card {
-    width: 11rem;
-    p{
-      margin: 0 auto;
-    }
+  p {
+    margin: 0 auto;
+  }
 }
 
 .imgCardTop {
-    height: 180px;
-    width: 100%;
-    max-width: 330px;
-    display: block;
+  height: 180px;
+  width: 100%;
+  max-width: 330px;
+  display: block;
 }
 
-@media (max-width: 950px) {
-    .card {
-        // width: 16rem;
-    }
+@media (max-width: 740px) {
+  .card div {
+    flex-direction: row-reverse;
+  }
 }
 
 @media (max-width: 600px) {
-    .card {
-        width: 100%;
-        min-width: 100%;
-    }
-    img.imgCardTop {
-        margin: 0 auto;
-        width: 100%;
-        max-width: none;
-    }
+  .card {
+    width: 100%;
+    min-width: 100%;
+  }
+  img.imgCardTop {
+    margin: 0 auto;
+    width: 35%;
+  }
 }

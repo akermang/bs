@@ -35,12 +35,9 @@ class Cards extends React.Component {
           <CardBody>
             {/* <p>ID: {board.id}</p> */}
             <h4 className={classes.cardTitle} style={{ color: "#a73a9d"}}>{board.brand || "Al Meric"}</h4>
-            <p> {board.type}</p>
-            <p>MODEL: {board.model}</p>
-            <p>MEASURES: 5'9" x 18 3/4" x 2 5/16"</p>
-            <p> {board.finSetUp || "fcs * 3"}</p>
-            <p> {board.tail || "Fish"}</p>
-            <p> {board.construction}</p>
+            <p> {board.type}  : {board.model}</p>
+            <p> 5'9" x 18 3/4" x 2 5/16"</p>
+            <p>  {board.tail || "Fish"} {board.finSetUp || "fcs * 3"} {board.construction}</p>
             <p> {board.location || "Ericeira Portugal"} </p>
             <h5>
               <span style={{ fontWeight: 700, color: "red" }}>
