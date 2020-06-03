@@ -54,6 +54,8 @@ class CreateBoardPage extends Component {
 
   render() {
     const { boards, options, openDialog, editBoard } = this.props;
+    options['_id'] = null;
+    console.log('options:', options)
     const board = this.state.board;
     let place = "board.location"; // temp gal
 

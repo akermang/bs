@@ -18,7 +18,6 @@ const controller = {
     const client = await conectToDB();
     // specify the DB's name
     const db = client.db(DATABASE_NAME);
-    newBoard.model = "Highway star2";
     // execute find query
     db.collection(BOARDS_LIST).insertOne(newBoard, (err, res) => {
       if (err) throw err;
@@ -74,7 +73,7 @@ const controller = {
   },
 
   dbGetBoardById: async (id, callback, limit = 1) => {
-    console.log('ID:', id)
+    console.log("ID:", id);
     // connect to your cluster
     const client = await conectToDB();
     // specify the DB's name
@@ -102,14 +101,43 @@ const controller = {
       .limit(limit)
       .toArray((err, res) => {
         if (err) throw err;
-        console.log("5ed773ad4035211f18fd1051", res);
+        console.log("dbGetBoardsByUserId:", res);
         client.close();
         callback(res);
       });
   },
+
+  dbUpdateById: async (id, callback, limit = 40) => {
+    // connect to your cluster
+    const client = await conectToDB();
+    // specify the DB's name
+    const db = client.db(DATABASE_NAME);
+    const col = db.collection(BOARDS_LIST);
+    // Update a single document
+    col.updateOne({ "_id": ObjectId(id)},{ $set: { name: "Gal's Board 8" } }, (err,res) => {
+      if (err) throw err;
+      console.log("dbUpdateById:", res);
+      client.close();
+      callback(res);
+    });
+  },
+  dbUDeleteById: async (id, callback) => {
+    // connect to your cluster
+    const client = await conectToDB();
+    // specify the DB's name
+    const db = client.db(DATABASE_NAME);
+    const col = db.collection(BOARDS_LIST);
+    // Update a single document
+    col.deleteOne({ "_id": ObjectId(id)}, (err,res) => {
+      if (err) throw err;
+      console.log("dbUpdateById:", res);
+      client.close();
+      callback(res);
+    });
+  },
 };
 
 const log = (response) => console.log("LOGER:", response);
-controller.dbGetBoardById("5ed784cb0b3bc11ac00a2fa4", log);
+controller.dbUDeleteById("5ed7a569e40bf64eb49975f0", log);
 
 module.exports = controller;

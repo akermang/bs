@@ -43,7 +43,7 @@ class Boardsoptionsitem extends Component {
     options.label === "measures" ? (options.label = "length") : null;
     if (board && board[options.label]) {
       renderBoardOption = true;
-    } else if (board) {
+    } else {
     }
 
     return (
@@ -51,7 +51,8 @@ class Boardsoptionsitem extends Component {
         <div>
           {!this.state.editMode &&
             board &&
-            board[options.label] && (
+            board[options.label] &&
+            options.label !== "_id" && (
               <ListItemLink
                 onClick={() => this.toggleEdit()}
                 className={styles.board_container}
@@ -71,7 +72,8 @@ class Boardsoptionsitem extends Component {
                 </Button>
                 {!this.state.editMode &&
                   board &&
-                  board[options.label] && <div>{board[options.label]}</div>}
+                  board[options.label] &&
+                   <div>{board[options.label]}</div>}
               </ListItemLink>
             )}
           <div>

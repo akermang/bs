@@ -75,7 +75,7 @@ class SearchresultsPage extends Component {
           {boards &&
             boards.map(board => (
               <div
-                key={board.id}
+                key={board._id}
                 id={board.id}
                 className={styles.boardCard}
                 onClick={() => this.onBoardClick(board._id)}
