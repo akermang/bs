@@ -1,7 +1,6 @@
 const MongoClient = require("mongodb").MongoClient;
 const ObjectId = require("mongodb").ObjectID;
-const CONNECTION_URL =
-  "mongodb+srv://akermang:LaG9872817@share-sc50x.gcp.mongodb.net/test?retryWrites=true&w=majority";
+const CONNECTION_URL = require("./db.env.js"); 
 const DATABASE_NAME = "boardsList";
 const BOARDS_LIST = "BOARDS_LIST";
 const board_options = "board_options";
