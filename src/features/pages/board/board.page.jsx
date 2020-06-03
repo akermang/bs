@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import styles from "./board.page.scss";
 import queryString from "query-string";
 import { FetchBoardByIdAction } from "../../../common/state/board/board.actions";
+import { StartLoaderAction, StopLoaderAction } from "../../../common/state/shared/shared.actions";
 import Typography from "@material-ui/core/Typography";
 import GlobalsearchComponent from "../../components/globalSearch/globalSearch.component.jsx";
 import { translate } from "react-i18next";
@@ -24,7 +25,8 @@ class BoardPage extends Component {
 
   componentDidMount() {
     const values = queryString.parse(this.props.location.search);
-    this.props.fetchBoardById(values.boardId);
+    this.props.startLoader();
+    this.props.fetchBoardById(values.boardId).then(res=> this.props.stopLoader());
   }
 
   goSearch = (history, location, dates) => {
@@ -81,7 +83,9 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    fetchBoardById: id => dispatch(new FetchBoardByIdAction(id))
+    fetchBoardById: id => dispatch(new FetchBoardByIdAction(id)),
+    startLoader: () => dispatch(new StartLoaderAction()),
+    stopLoader: () => dispatch(new StopLoaderAction()),
   };
 }
 

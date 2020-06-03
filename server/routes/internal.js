@@ -6,7 +6,7 @@ const router = express.Router();
 function send (res, data) {
   setTimeout(() => {
     res.send(data);
-  }, 500);
+  }, 2);
 }
 
 /**

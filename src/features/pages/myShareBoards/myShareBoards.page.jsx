@@ -10,6 +10,7 @@ import {
   FetchNewBoardAction,
   editBoardAction
 } from "../../../common/state/board/board.actions";
+import { StartLoaderAction, StopLoaderAction } from "../../../common/state/shared/shared.actions";
 import Cards from "../../components/card.Class/cardClass.component.jsx";
 import Card from "../../components/Card/Card.jsx";
 import ListcompComponent from "../../components/list/list.component.jsx";
@@ -26,7 +27,8 @@ class MyshareboardsPage extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchBoardsByUserId(this.props.user.userId);
+    this.props.startLoader();
+    this.props.fetchBoardsByUserId(this.props.user.userId).then(res => this.props.stopLoader());
   }
 
   inputChanged(e) {
@@ -38,12 +40,25 @@ class MyshareboardsPage extends Component {
     this.props.dispatchEditBoard(board);
     this.props.history.push({
       pathname: "/create-board",
-      search: `?boardId=${board.id}`
+      search: `?boardId=${board._id}`
     });
   }
 
   onBoardClick(board) {
     this.editBoard(board);
+  }
+
+  createBoard(){
+    this.props.startLoader();
+    this.props.fetchNewBoard({
+                  name: this.state.inputValue,
+                  userId: this.props.user.userId
+                })
+                .then(res => {
+                  this.props.stopLoader();
+                  this.editBoard(res);
+                  this.props.closeDialog();
+                })
   }
 
   addBoard() {
@@ -64,15 +79,7 @@ class MyshareboardsPage extends Component {
           className={styles.button_edit}
           onClick={() =>
             this.state.inputValue != "" ?
-              this.props
-                .fetchNewBoard({
-                  name: this.state.inputValue,
-                  userId: this.props.user.userId
-                })
-                .then(res => {
-                  this.editBoard(res);
-                  this.props.closeDialog();
-                }) : null
+              this.createBoard() : null
           }
         >
           <Icon>add_icon</Icon>
@@ -131,7 +138,9 @@ function mapDispatchToProps(dispatch) {
       dispatch(new OpenDialogAction(title, component, type, handler)),
     fetchNewBoard: newBoard => dispatch(new FetchNewBoardAction(newBoard)),
     closeDialog: () => dispatch(new CloseDialogAction()),
-    dispatchEditBoard: board => dispatch(new editBoardAction(board))
+    dispatchEditBoard: board => dispatch(new editBoardAction(board)),
+    startLoader: () => dispatch(new StartLoaderAction()),
+    stopLoader: () => dispatch(new StopLoaderAction())
   };
 }
 

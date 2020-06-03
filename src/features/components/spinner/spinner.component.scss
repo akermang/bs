@@ -1,13 +1,16 @@
 .spinner{
-    opacity: 0.5;
+    // opacity: 0.5;
     width: 100%!important;
     height: 100%!important;
     position: absolute!important;
-    background: rgba(0, 0, 0, 0.48);
+    // background: rgba(0, 0, 0, 0.48);
     left: 0;
     top: 0;
+    bottom: 0;
+    right: 0;
     z-index: 2000;
     display: flex!important;
     align-items: center;
     justify-content: center;
+    margin: auto;
   }

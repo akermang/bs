@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import styles from "./SearchResults.page.scss";
 import Cards from "../../components/card.Class/cardClass.component.jsx";
 import { FetchBoardsBySelectionAction } from "../../../common/state/board/board.actions";
+import { StartLoaderAction, StopLoaderAction } from "../../../common/state/shared/shared.actions";
 import Typography from "@material-ui/core/Typography";
 import { translate } from "react-i18next";
 import GlobalsearchComponent from "../../components/globalSearch/globalSearch.component.jsx";
@@ -31,7 +32,8 @@ class SearchresultsPage extends Component {
   }
 
   fetch = selection => {
-    this.props.fetchBoardsBySelections(selection);
+    this.props.startLoader();
+    this.props.fetchBoardsBySelections(selection).then(res => this.props.stopLoader());
   };
 
   onBoardClick = id => this.goToBoardPage(id);
@@ -76,7 +78,7 @@ class SearchresultsPage extends Component {
                 key={board.id}
                 id={board.id}
                 className={styles.boardCard}
-                onClick={() => this.onBoardClick(board.id)}
+                onClick={() => this.onBoardClick(board._id)}
               >
                 <Cards board={board} />
               </div>
@@ -101,7 +103,9 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     fetchBoardsBySelections: userSelection =>
-      dispatch(new FetchBoardsBySelectionAction(userSelection))
+      dispatch(new FetchBoardsBySelectionAction(userSelection)),
+      startLoader: () => dispatch(new StartLoaderAction()),
+      stopLoader: () => dispatch(new StopLoaderAction())
   };
 }
 

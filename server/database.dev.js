@@ -1,16 +1,115 @@
-const Sequelize = require('sequelize');
-const sqlite = require('sqlite3');
-const db = new sqlite.Database('./database.sqlite');
+const MongoClient = require("mongodb").MongoClient;
+const ObjectId = require("mongodb").ObjectID;
+const CONNECTION_URL =
+  "mongodb+srv://akermang:LaG9872817@share-sc50x.gcp.mongodb.net/test?retryWrites=true&w=majority";
+const DATABASE_NAME = "boardsList";
+const BOARDS_LIST = "BOARDS_LIST";
+const board_options = "board_options";
 
-const sequelize = new Sequelize('database', 'username', 'password', {
-    // sqlite! now!
-    dialect: 'sqlite',
-  
-    // the storage engine for sqlite
-    // - default ':memory:'
-    operatorsAliases: false,
-    storage: './database.sqlite'
-  })
+const conectToDB = () =>
+  MongoClient.connect(CONNECTION_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
 
-console.log("sqlite server is running");
-module.exports = sequelize;
+const controller = {
+  dbAddNewBoard: async (newBoard, callback) => {
+    // connect to your cluster
+    const client = await conectToDB();
+    // specify the DB's name
+    const db = client.db(DATABASE_NAME);
+    newBoard.model = "Highway star2";
+    // execute find query
+    db.collection(BOARDS_LIST).insertOne(newBoard, (err, res) => {
+      if (err) throw err;
+      console.log("newBoard inserted:", res.ops);
+      client.close();
+      callback(res);
+    });
+  },
+
+  dbAddManyBoards: async (boardsList, callback) => {
+    // connect to your cluster
+    const client = await conectToDB();
+    // specify the DB's name
+    const db = client.db(DATABASE_NAME);
+    db.collection(BOARDS_LIST).insertMany(boardsList, function(err, res) {
+      if (err) throw err;
+      console.log("baoardsList inserted:", res.ops);
+      client.close();
+      callback(res);
+    });
+  },
+
+  dbGetAllBoards: async (callback, limit = 40) => {
+    // connect to your cluster
+    const client = await conectToDB();
+    // specify the DB's name
+    const db = client.db(DATABASE_NAME);
+    db.collection(BOARDS_LIST)
+      .find()
+      .limit(limit)
+      .toArray((err, res) => {
+        if (err) throw err;
+        console.log("getAllbaoards:", res);
+        client.close();
+        callback(res);
+      });
+  },
+
+  dbGetBoardsdOptions: async (callback, limit = 40) => {
+    // connect to your cluster
+    const client = await conectToDB();
+    // specify the DB's name
+    const db = client.db(DATABASE_NAME);
+    db.collection(board_options)
+      .find()
+      .limit(limit)
+      .toArray((err, res) => {
+        if (err) throw err;
+        console.log("dbGetBoarsdOptions:", res[0]);
+        client.close();
+        callback(res[0]);
+      });
+  },
+
+  dbGetBoardById: async (id, callback, limit = 1) => {
+    console.log('ID:', id)
+    // connect to your cluster
+    const client = await conectToDB();
+    // specify the DB's name
+    const db = client.db(DATABASE_NAME);
+    db.collection(BOARDS_LIST)
+      .find(ObjectId(id))
+      .limit(limit)
+      .toArray((err, res) => {
+        if (err) throw err;
+        console.log("dbGetBoardById:", res);
+        client.close();
+        callback(res[0]);
+      });
+  },
+
+  dbGetBoardsByUserId: async (userId, callback, limit = 40) => {
+    console.log("userId:", userId);
+
+    // connect to your cluster
+    const client = await conectToDB();
+    // specify the DB's name
+    const db = client.db(DATABASE_NAME);
+    db.collection(BOARDS_LIST)
+      .find({ userId: userId })
+      .limit(limit)
+      .toArray((err, res) => {
+        if (err) throw err;
+        console.log("5ed773ad4035211f18fd1051", res);
+        client.close();
+        callback(res);
+      });
+  },
+};
+
+const log = (response) => console.log("LOGER:", response);
+controller.dbGetBoardById("5ed784cb0b3bc11ac00a2fa4", log);
+
+module.exports = controller;

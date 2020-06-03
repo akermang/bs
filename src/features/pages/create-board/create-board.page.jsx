@@ -18,6 +18,7 @@ import {
   FetchBoardsOptionsAction,
   FetchBoardByIdAction
 } from "../../../common/state/board/board.actions";
+import { StartLoaderAction, StopLoaderAction } from "../../../common/state/shared/shared.actions";
 import Typography from "@material-ui/core/Typography";
 import { translate } from "react-i18next";
 import BoardPriceFormComponent from "../../components/board-price-form/board-price-form.component.jsx";
@@ -33,8 +34,10 @@ class CreateBoardPage extends Component {
   }
   componentDidMount() {
     const values = queryString.parse(this.props.location.search);
+    this.props.startLoader();
     this.props.fetchBoardById(values.boardId).then(res => {
       this.setState({ board: res });
+      this.props.stopLoader();
     });
     this.props.fetchBoardsOptions().then(res => {
       const suggestions = this.props.options.brand.map(suggestion => ({
@@ -118,7 +121,9 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     fetchBoardsOptions: () => dispatch(new FetchBoardsOptionsAction()),
-    fetchBoardById: id => dispatch(new FetchBoardByIdAction(id))
+    fetchBoardById: id => dispatch(new FetchBoardByIdAction(id)),
+    startLoader: () => dispatch(new StartLoaderAction()),
+    stopLoader: () => dispatch(new StopLoaderAction()),
   };
 }
 

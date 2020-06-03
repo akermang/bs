@@ -1,10 +1,16 @@
 const express = require("express");
 const router = express.Router();
-const Sequelize = require("Sequelize");
-const db = require("../getDb.js");
+const controller = require("../database.dev");
+const MongoClient = require("mongodb").MongoClient;
+// const ObjectId = require("mongodb").ObjectID;
+const CONNECTION_URL =
+  "mongodb+srv://akermang:LaG9872817@share-sc50x.gcp.mongodb.net/test?retryWrites=true&w=majority";
+const DATABASE_NAME = "boardsList";
+
 const allBoards = require("../mock/surfboards.json");
-const defaultBoard = [allBoards[0]]
+const defaultBoard = [allBoards[0]];
 const BoardImages = require("../mock/images.json");
+const BOARDS_LIST = "boardsList";
 const BoardsOptions = require("../mock/BoardsOptions.json");
 
 /**
@@ -13,49 +19,58 @@ const BoardsOptions = require("../mock/BoardsOptions.json");
 
 // Create new board
 router.post("/", (req, res) => {
-  const { newBoard } = req.body;
-  let id = allBoards.length + 10
-  newBoard["id"] = id;
-  allBoards.push(newBoard);
-  res.status(200).send(JSON.stringify(newBoard));
+  let { newBoard } = req.body;
+  console.log("req.body:", req.body);
+  controller.dbAddNewBoard(newBoard, (respose) => {
+    newBoard = respose.ops[0];
+    newBoard.id = newBoard._id;
+    allBoards.push(newBoard);
+    res.status(200).send(JSON.stringify(newBoard));
+  });
 });
 
 // Get all boards
 router.get("/", (req, res) => {
-  res.status(200).send(allBoards);
+  controller.dbGetAllBoards((allboards) => {
+    res.status(200).send(JSON.stringify(allboards));
+  });
 });
 
-//post boards by selection
+//post boards by selection dates and location
 router.post("/bySelection", (req, res) => {
-  if(req.body.userSelections.dates != "" && req.body.userSelections.location != ""){
-    res.status(200).send(allBoards);
-  }else{
-    res.status(200).send(defaultBoard);
+  if (
+    req.body.userSelections.dates != "" &&
+    req.body.userSelections.location != ""
+  ) {
+    controller.dbGetAllBoards((allboards) => {
+      res.status(200).send(JSON.stringify(allboards));
+    });
+  } else {
+    res.status(200).send([]);
   }
-  
-  console.log("req.body:", req.body);
-  console.log("req.params:", req.params);
 });
 
 //get boards options
 router.get("/options", (req, res) => {
-  res.status(200).send(BoardsOptions);
+  controller.dbGetBoardsdOptions((BoardsOptions) => {
+    res.status(200).send(JSON.stringify(BoardsOptions));
+  });
 });
 
 // Get board by Id
 router.get("/:id", (req, res) => {
   const { id } = req.params;
-  const result = allBoards.find( board => board.id == id );
-  res.status(200).send(JSON.stringify(result));
+  controller.dbGetBoardById(id, (board) => {
+    res.status(200).send(JSON.stringify(board));
+  });
 });
 
 // Get boards by user Id
 router.get("/byUserId/:id", (req, res) => {
   const { id } = req.params;
-  let boards = allBoards.filter(obj => {
-    return obj.userId == id;
+  controller.dbGetBoardsByUserId(id, (board) => {
+    res.status(200).send(JSON.stringify(board));
   });
-  res.status(200).send(JSON.stringify(boards));
 });
 
 module.exports = router;
