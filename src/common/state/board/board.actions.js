@@ -11,6 +11,7 @@ export const FETCH_BOARDS_BY_ID = "FETCH_BOARDS_BY_ID";
 export const FETCH_BOARDS_BY_USER_ID = "FETCH_BOARDS_BY_USER_ID";
 export const FETCH_NEW_BOARD = "FETCH_NEW_BOARD";
 export const EDIT_BOARD = "EDIT_BOARD";
+export const FETCH_BOARD_UPDATE = "FETCH_BOARD_UPDATE";
 
 /**
  * Async actions
@@ -76,3 +77,15 @@ export function editBoardAction(payload) {
     payload
   };
 }
+
+export const UpdateBoardAction = createAsyncAction(
+  FETCH_BOARD_UPDATE,
+  payload => {
+    const options = ApiService.getOptions("upupdateBoardById");
+    const {_id, data} = payload;
+    return HttpService.fetch({ ...options,
+       url: options.url(_id),
+       body: JSON.stringify({data})
+    });
+  }
+);

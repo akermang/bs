@@ -16,7 +16,8 @@ import Boardsoptionslist from "../../components/boardsOptionsList/boardsOptionLi
 import queryString from "query-string";
 import {
   FetchBoardsOptionsAction,
-  FetchBoardByIdAction
+  FetchBoardByIdAction,
+  UpdateBoardAction
 } from "../../../common/state/board/board.actions";
 import { StartLoaderAction, StopLoaderAction } from "../../../common/state/shared/shared.actions";
 import Typography from "@material-ui/core/Typography";
@@ -50,6 +51,11 @@ class CreateBoardPage extends Component {
   togglePriceEdit() {
     let val = !this.state.editPrice;
     this.setState({ editPrice: val });
+  }
+
+  setUpdate(payload) {
+    console.log('setUpdate payload:', payload)
+    this.props.fetchBoardUpdate(payload);
   }
 
   render() {
@@ -97,6 +103,7 @@ class CreateBoardPage extends Component {
             options={options}
             board={board}
             openDialog={openDialog}
+            updateBoard={payload => this.setUpdate(payload)}
           />
         )}
       </div>
@@ -124,6 +131,7 @@ function mapDispatchToProps(dispatch) {
   return {
     fetchBoardsOptions: () => dispatch(new FetchBoardsOptionsAction()),
     fetchBoardById: id => dispatch(new FetchBoardByIdAction(id)),
+    fetchBoardUpdate: payload => dispatch(new UpdateBoardAction(payload)),
     startLoader: () => dispatch(new StartLoaderAction()),
     stopLoader: () => dispatch(new StopLoaderAction()),
   };

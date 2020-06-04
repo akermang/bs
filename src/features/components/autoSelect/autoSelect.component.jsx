@@ -186,6 +186,10 @@ class IntegrationReactSelect extends React.Component {
   };
 
   handleChange = name => value => {
+    console.log('name:', name);
+    console.log('value:', value.label);
+    console.log('state:', this.state)
+    this.props.onSelect(value.label);
     this.setState({
       [name]: value
     });

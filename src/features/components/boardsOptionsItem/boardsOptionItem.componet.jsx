@@ -24,7 +24,8 @@ class Boardsoptionsitem extends Component {
     super(props);
     this.state = {
       editMode: false,
-      boardHasOptionValue: false
+      boardHasOptionValue: false,
+      selectedValue: null
     };
   }
 
@@ -34,8 +35,24 @@ class Boardsoptionsitem extends Component {
     );
   }
 
+  setButtonCliced(key) {
+        console.log("key", key);
+        let data = {};
+        data[key] = this.state.selectedValue;
+        const payload = {
+          _id:  this.props.board._id,
+          data: data,
+        };
+        this.props.updateBoard(payload);
+        this.toggleEdit();
+  }
+
+  valueSelected(val) {
+    this.setState({selectedValue: val});
+  }
+
   render() {
-    const { options, board } = this.props;
+    const { options, board, updateBoard} = this.props;
     let renderBoardOption = false;
     options.label === "measures"
       ? (options.value = options.value.length)
@@ -82,17 +99,20 @@ class Boardsoptionsitem extends Component {
               options.value && (
                 <ListItemLink
                   className={styles.selectContainer}
-                  onBlur={() => this.setState({ editMode: false })}
+                  // onBlur={() => this.setState({ editMode: false })}
                 >
                   <div>
-                    <Button>set</Button>
-                    <Button onClick={() => this.setState({ editMode: false })}>
+                    <Button onClick={() => this.setButtonCliced(options.label)}>
+                      set
+                    </Button>
+                    <Button onClick={() => this.toggleEdit()}>
                       skip
                     </Button>
                   </div>
                   <ListItem>
                     <IntegrationReactSelect
                       placeholder={options.label}
+                      onSelect={(val) => this.valueSelected(val)}
                       suggestions={options.value.map(
                         suggestion =>
                           suggestion.label

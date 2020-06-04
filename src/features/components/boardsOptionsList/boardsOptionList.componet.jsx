@@ -14,7 +14,7 @@ function ListItemLink(props) {
 }
 
 const Boardsoptionslist = props => {
-  const { options, board } = props;
+  const { options, board, updateBoard} = props;
   const boardImages = board && board.images ? board.images : null;
   const optionsArry = Object.keys(options).map(key => {
     return { value: options[key], label: key };
@@ -54,7 +54,7 @@ const Boardsoptionslist = props => {
         <div className={styles.options_wraper}>
           {optionsArry &&
             optionsArry.map((option, index) => (
-              <Boardsoptionsitem key={index} options={option} board={board} />
+              <Boardsoptionsitem key={index} options={option} board={board} updateBoard={updateBoard} />
             ))}
         </div>
       </Card>

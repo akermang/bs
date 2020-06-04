@@ -74,11 +74,13 @@ const controller = {
       });
   },
 
-  updateBoardById: (id, callback, limit = 40) => {
+  updateBoardById: (id, dataObject, callback, limit = 40) => {
+    console.log('updateBoardById:', dataObject)
+    const data = dataObject.data;
     boards
     .updateOne(
       { _id: ObjectId(id) },
-      { $set: { name: "Gal's super Board" } },
+      { $set: data },
       (err, res) => {
         if (err) throw err;
         callback(res);

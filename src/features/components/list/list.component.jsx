@@ -55,7 +55,7 @@ function ListcompComponent(props) {
                         component="p"
                         color="textSecondary"
                       >
-                        {index + 1} {board.name} {board.brand}
+                        {index + 1} {board.name} 
                       </Typography>
                       <Button
                         variant="flat"

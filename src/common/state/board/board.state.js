@@ -16,7 +16,8 @@ const initialState = {
     construction: null
   },
   userBoards: null,
-  newBoard: null
+  newBoard: null,
+  updatedBoard: null
 };
 
 export default initialState;
