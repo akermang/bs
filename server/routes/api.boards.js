@@ -73,4 +73,12 @@ router.get("/byUserId/:id", (req, res) => {
   });
 });
 
+// Post update boards by Id
+router.get("/updateById/:id", (req, res) => {
+  const { id } = req.params;
+  controller.updateBoardById(id, (board) => {
+    res.status(200).send(JSON.stringify(board));
+  });
+});
+
 module.exports = router;

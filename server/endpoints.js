@@ -43,5 +43,10 @@ export default {
     url: id => `/api/boards/byUserId/${id}`,
     method: 'GET',
     contentType: 'application/json'
-  }
+  },
+  upupdateBoardById: {
+    url: id => `/api/boards/updateById/${id}`,
+    method: 'POST',
+    contentType: 'application/json'
+  },
 };
