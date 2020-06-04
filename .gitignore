@@ -26,4 +26,4 @@ yarn-error.log*
 
 *.jar
 /.vscode/
-.env.js
+/server/db.env.js
