@@ -21,7 +21,7 @@ const BoardsOptions = require("../mock/BoardsOptions.json");
 router.post("/", (req, res) => {
   let { newBoard } = req.body;
   console.log("req.body:", req.body);
-  controller.dbAddNewBoard(newBoard, (respose) => {
+  controller.addNewBoard(newBoard, (respose) => {
     newBoard = respose.ops[0];
     newBoard.id = newBoard._id;
     allBoards.push(newBoard);
@@ -31,7 +31,7 @@ router.post("/", (req, res) => {
 
 // Get all boards
 router.get("/", (req, res) => {
-  controller.dbGetAllBoards((allboards) => {
+  controller.getAllBoards((allboards) => {
     res.status(200).send(JSON.stringify(allboards));
   });
 });
@@ -42,7 +42,7 @@ router.post("/bySelection", (req, res) => {
     req.body.userSelections.dates != "" &&
     req.body.userSelections.location != ""
   ) {
-    controller.dbGetAllBoards((allboards) => {
+    controller.getAllBoards((allboards) => {
       res.status(200).send(JSON.stringify(allboards));
     });
   } else {
@@ -52,7 +52,7 @@ router.post("/bySelection", (req, res) => {
 
 //get boards options
 router.get("/options", (req, res) => {
-  controller.dbGetBoardsdOptions((BoardsOptions) => {
+  controller.getBoardsdOptions((BoardsOptions) => {
     res.status(200).send(JSON.stringify(BoardsOptions));
   });
 });
@@ -60,7 +60,7 @@ router.get("/options", (req, res) => {
 // Get board by Id
 router.get("/:id", (req, res) => {
   const { id } = req.params;
-  controller.dbGetBoardById(id, (board) => {
+  controller.getBoardById(id, (board) => {
     res.status(200).send(JSON.stringify(board));
   });
 });
@@ -68,7 +68,7 @@ router.get("/:id", (req, res) => {
 // Get boards by user Id
 router.get("/byUserId/:id", (req, res) => {
   const { id } = req.params;
-  controller.dbGetBoardsByUserId(id, (board) => {
+  controller.getBoardsByUserId(id, (board) => {
     res.status(200).send(JSON.stringify(board));
   });
 });
