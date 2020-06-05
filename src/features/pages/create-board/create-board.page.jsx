@@ -30,7 +30,8 @@ class CreateBoardPage extends Component {
     super(props);
     this.state = {
       board: null,
-      editPrice: false
+      editPrice: false,
+      values: queryString.parse(this.props.location.search)
     };
   }
   componentDidMount() {
@@ -54,10 +55,17 @@ class CreateBoardPage extends Component {
   }
 
   setUpdate(payload) {
+    const {data} = payload;
+    const updatedBoard =  {...this.state.board, data}
+    this.setState({baoard: updatedBoard})
     console.log('setUpdate payload:', payload)
-    this.props.fetchBoardUpdate(payload);
+    this.props.fetchBoardUpdate(payload)
+    .then(res => {
+      this.props.fetchBoardById(this.state.values.boardId).then(res => {
+        this.setState({ board: res });
+      });
+    })
   }
-
   render() {
     const { boards, options, openDialog, editBoard } = this.props;
     options['_id'] = null;
