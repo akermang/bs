@@ -1,6 +1,6 @@
 const MongoClient = require("mongodb").MongoClient;
 const ObjectId = require("mongodb").ObjectID;
-const CONNECTION_URL = require("./db.env");
+const CONNECTION_URL = require("./DB_config");
 
 const DATABASE_NAME = "boardsList";
 const BOARDS_LIST = "BOARDS_LIST";
@@ -15,6 +15,7 @@ let boards;
 
 client.connect((err) => {
   if (err) throw err;
+  console.log("DB Conected")
   boaedsOptions = client.db(DATABASE_NAME).collection(board_options);
   boards = client.db(DATABASE_NAME).collection(BOARDS_LIST);
 });
