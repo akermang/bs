@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Component} from "react";
 import { HashRouter as Router, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
 import { I18nextProvider } from "react-i18next";
@@ -18,8 +18,9 @@ import BoardPage from "../features/pages/board/board.page.jsx";
 
 
 
-const Root = ({ store }) => ({
+class Root extends Component {
   render() {
+    const {store} = this.props;
     return (
       <I18nextProvider i18n={i18n}>
         <Provider store={store}>
@@ -40,7 +41,9 @@ const Root = ({ store }) => ({
         </Provider>
       </I18nextProvider>
     );
-  }
-});
+  };
+}; 
+  
+
 
 export default Root;
