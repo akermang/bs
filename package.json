@@ -91,7 +91,7 @@
     "karma-phantomjs-launcher": "1.0.4",
     "karma-source-map-support": "1.2.0",
     "karma-webpack": "3.0.0",
-    "node-sass": "^4.14.1",
+    "node-sass": "^7.0.0",
     "postcss-loader": "2.0.8",
     "react-hot-loader": "3.1.2",
     "sass-loader": "6.0.6",
