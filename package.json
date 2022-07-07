@@ -31,7 +31,7 @@
     "isomorphic-fetch": "2.2.1",
     "material-ui-datetime-range-picker": "^0.2.1",
     "material-ui-pickers": "1.0.0-rc.17",
-    "moment": "2.22.1",
+    "moment": "2.29.4",
     "moment-range": "3.0.3",
     "mongodb": "^3.5.8",
     "pg": "^7.5.0",
